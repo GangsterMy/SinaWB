@@ -34,7 +34,7 @@
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
+    
     return 20;
 }
 
@@ -54,7 +54,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Test1ViewController *test1 = [[Test1ViewController alloc] init];
     test1.title = @"test1controller";
-    test1.hidesBottomBarWhenPushed = YES;
+    //self.navigationController === NavigationController
     [self.navigationController pushViewController:test1 animated:YES];
 }
 

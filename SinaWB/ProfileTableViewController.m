@@ -7,6 +7,7 @@
 //
 #import <UIKit/UIKit.h>
 #import "ProfileTableViewController.h"
+#import "Test1ViewController.h"
 
 @interface ProfileTableViewController ()
 
@@ -16,12 +17,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:0 target:self action:@selector(setting)];
+}
+
+-(void)setting {
+    Test1ViewController *test1 = [[Test1ViewController alloc] init];
+    test1.title = @"test1";
+
+    [self.navigationController pushViewController:test1 animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

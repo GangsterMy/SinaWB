@@ -55,7 +55,7 @@
     childVc.view.backgroundColor = WBRandomColor;
     
     //add a NavigationController to childVcs
-    NavigationController *nav = [[UINavigationController alloc] initWithRootViewController:childVc];
+    NavigationController *nav = [[NavigationController alloc] initWithRootViewController:childVc];
     
     //add to childVc
     [self addChildViewController:nav];

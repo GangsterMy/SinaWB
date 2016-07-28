@@ -16,30 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    
-//    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-//    //set image
-//    [backBtn setBackgroundImage:[UIImage imageNamed:@"navigationbar_back"] forState:UIControlStateNormal];
-//    [backBtn setBackgroundImage:[UIImage imageNamed:@"navigationbar_back_highlighted"] forState:UIControlStateHighlighted];
-//    //set image size
-//    backBtn.size = backBtn.currentBackgroundImage.size;
-//    self.navigationItem.leftBarButtonItem =[[UIBarButtonItem alloc] initWithCustomView:backBtn];
-//    
-//    UIButton *moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [moreBtn addTarget:self action:@selector(more) forControlEvents:UIControlEventTouchUpInside];
-//    [moreBtn setBackgroundImage:[UIImage imageNamed:@"navigationbar_more"] forState:UIControlStateNormal];
-//    [moreBtn setBackgroundImage:[UIImage imageNamed:@"navigationbar_more_highlighted"] forState:UIControlStateHighlighted];
-//    moreBtn.size = moreBtn.currentBackgroundImage.size;
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:moreBtn];
 }
-
-//-(void)back {
-//    [self.navigationController popViewControllerAnimated:YES];
-//}
-//-(void)more {
-//    [self.navigationController popToRootViewControllerAnimated:YES];
-//}
 
 #pragma mark - Table view data source
 

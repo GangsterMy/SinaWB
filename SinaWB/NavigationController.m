@@ -24,14 +24,46 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+-(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
+  
+    if (self.viewControllers.count > 0) { //这是push进来的控制器不是第一个rootviewcontroller 数组 0为第一个
+        /* auto show or hide bottom bar */
+        
+        viewController.hidesBottomBarWhenPushed = YES;
+        
+        /* set navcontroller's content */
+        
+        UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+        //set image
+        [backBtn setBackgroundImage:[UIImage imageNamed:@"navigationbar_back"] forState:UIControlStateNormal];
+        [backBtn setBackgroundImage:[UIImage imageNamed:@"navigationbar_back_highlighted"] forState:UIControlStateHighlighted];
+        //set size
+        backBtn.size = backBtn.currentBackgroundImage.size;
+        viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+        
+        UIButton *moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [moreBtn addTarget:self action:@selector(more) forControlEvents:UIControlEventTouchUpInside];
+        //set image
+        [moreBtn setBackgroundImage:[UIImage imageNamed:@"navigationbar_more"] forState:UIControlStateNormal];
+        [moreBtn setBackgroundImage:[UIImage imageNamed:@"navigationbar_more_highlighted"] forState:UIControlStateHighlighted];
+        //set size
+        moreBtn.size = moreBtn.currentBackgroundImage.size;
+        viewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:moreBtn];
+        
+    }
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
+    [super pushViewController:viewController animated:animated];
+    
 }
-*/
+
+-(void)back {
+    [self popViewControllerAnimated:YES];
+}
+
+-(void)more {
+    [self popToRootViewControllerAnimated:YES];
+}
 
 @end
