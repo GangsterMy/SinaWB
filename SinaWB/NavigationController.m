@@ -32,24 +32,11 @@
         viewController.hidesBottomBarWhenPushed = YES;
         
         /* set navcontroller's content */
-        
-        UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-        //set image
-        [backBtn setBackgroundImage:[UIImage imageNamed:@"navigationbar_back"] forState:UIControlStateNormal];
-        [backBtn setBackgroundImage:[UIImage imageNamed:@"navigationbar_back_highlighted"] forState:UIControlStateHighlighted];
-        //set size
-        backBtn.size = backBtn.currentBackgroundImage.size;
-        viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
-        
-        UIButton *moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [moreBtn addTarget:self action:@selector(more) forControlEvents:UIControlEventTouchUpInside];
-        //set image
-        [moreBtn setBackgroundImage:[UIImage imageNamed:@"navigationbar_more"] forState:UIControlStateNormal];
-        [moreBtn setBackgroundImage:[UIImage imageNamed:@"navigationbar_more_highlighted"] forState:UIControlStateHighlighted];
-        //set size
-        moreBtn.size = moreBtn.currentBackgroundImage.size;
-        viewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:moreBtn];
+        //set left back button
+        viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(back) image:@"navigationbar_back" highImage:@"navigationbar_back_highlighted"];
+       
+        //set right more button
+        viewController.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(more) image:@"navigationbar_more" highImage:@"navigationbar_more_highlighted"];
         
     }
 

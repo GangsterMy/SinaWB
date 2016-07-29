@@ -26,6 +26,7 @@
 		0F5B1F161D411C96005A66B7 /* Test3TVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5B1F141D411C96005A66B7 /* Test3TVController.m */; };
 		0F5B1F171D411C96005A66B7 /* Test3TVController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F5B1F151D411C96005A66B7 /* Test3TVController.xib */; };
 		0F5B1F1B1D41227A005A66B7 /* Test1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F4D52111D3FC1D60034F9F2 /* Test1ViewController.m */; };
+		0FB1370C1D4B0A0600B0312B /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB1370B1D4B0A0600B0312B /* UIBarButtonItem+Extension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,8 @@
 		0F5B1F131D411C96005A66B7 /* Test3TVController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test3TVController.h; sourceTree = "<group>"; };
 		0F5B1F141D411C96005A66B7 /* Test3TVController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test3TVController.m; sourceTree = "<group>"; };
 		0F5B1F151D411C96005A66B7 /* Test3TVController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Test3TVController.xib; sourceTree = "<group>"; };
+		0FB1370A1D4B0A0600B0312B /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
+		0FB1370B1D4B0A0600B0312B /* UIBarButtonItem+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extension.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,18 +119,198 @@
 		0F2F7F991D3EFC2E00E0FE5B /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				0FB137051D4A5A0700B0312B /* Temp */,
+				0FB136F01D4A575000B0312B /* Main */,
+				0FB136EC1D4A56FD00B0312B /* Home */,
+				0FB136ED1D4A571700B0312B /* MessageCenter */,
+				0FB136EE1D4A572A00B0312B /* Discover */,
+				0FB136EF1D4A574300B0312B /* Profile */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		0FB136EC1D4A56FD00B0312B /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				0FB136F31D4A57D800B0312B /* Controller */,
+				0FB136F41D4A57E000B0312B /* Model */,
+				0FB136F21D4A578800B0312B /* View */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		0FB136ED1D4A571700B0312B /* MessageCenter */ = {
+			isa = PBXGroup;
+			children = (
+				0FB136F71D4A585300B0312B /* Controller */,
+				0FB136F61D4A584900B0312B /* Model */,
+				0FB136F51D4A583100B0312B /* View */,
+			);
+			name = MessageCenter;
+			sourceTree = "<group>";
+		};
+		0FB136EE1D4A572A00B0312B /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				0FB136FA1D4A586C00B0312B /* Controller */,
+				0FB136F91D4A586600B0312B /* Model */,
+				0FB136F81D4A586000B0312B /* View */,
+			);
+			name = Discover;
+			sourceTree = "<group>";
+		};
+		0FB136EF1D4A574300B0312B /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				0FB136FD1D4A588300B0312B /* Controller */,
+				0FB136FC1D4A587D00B0312B /* Model */,
+				0FB136FB1D4A587800B0312B /* View */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		0FB136F01D4A575000B0312B /* Main */ = {
+			isa = PBXGroup;
+			children = (
 				0F4D51F61D3F24740034F9F2 /* AppDelegate.h */,
 				0F4D51F71D3F24740034F9F2 /* AppDelegate.m */,
-				0F4D52421D408E500034F9F2 /* UIView+Extension.h */,
-				0F4D52431D408E500034F9F2 /* UIView+Extension.m */,
+				0F4D51EA1D3F242B0034F9F2 /* main.m */,
+				0FB137061D4A5A4300B0312B /* Category */,
+				0FB137001D4A58CE00B0312B /* Controller */,
+				0FB136FF1D4A58C800B0312B /* Model */,
+				0FB136FE1D4A58C200B0312B /* View */,
+				0FB137041D4A597400B0312B /* Lib */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		0FB136F21D4A578800B0312B /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		0FB136F31D4A57D800B0312B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0F4D51FE1D3F73FF0034F9F2 /* HomeTableViewController.h */,
+				0F4D51FF1D3F73FF0034F9F2 /* HomeTableViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		0FB136F41D4A57E000B0312B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		0FB136F51D4A583100B0312B /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		0FB136F61D4A584900B0312B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		0FB136F71D4A585300B0312B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0F4D52011D3F74210034F9F2 /* MessageCenterTableViewController.h */,
+				0F4D52021D3F74210034F9F2 /* MessageCenterTableViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		0FB136F81D4A586000B0312B /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		0FB136F91D4A586600B0312B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		0FB136FA1D4A586C00B0312B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0F4D52041D3F744A0034F9F2 /* DiscoverTableViewController.h */,
+				0F4D52051D3F744A0034F9F2 /* DiscoverTableViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		0FB136FB1D4A587800B0312B /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		0FB136FC1D4A587D00B0312B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		0FB136FD1D4A588300B0312B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0F4D52071D3F745E0034F9F2 /* ProfileTableViewController.h */,
+				0F4D52081D3F745E0034F9F2 /* ProfileTableViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		0FB136FE1D4A58C200B0312B /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		0FB136FF1D4A58C800B0312B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		0FB137001D4A58CE00B0312B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
 				0F4D520D1D3FACD10034F9F2 /* MainTabBarController.h */,
 				0F4D520E1D3FACD10034F9F2 /* MainTabBarController.m */,
 				0F4994BC1D45CD8000C57601 /* NavigationController.h */,
 				0F4994BD1D45CD8000C57601 /* NavigationController.m */,
-				0F4D51FE1D3F73FF0034F9F2 /* HomeTableViewController.h */,
-				0F4D51FF1D3F73FF0034F9F2 /* HomeTableViewController.m */,
-				0F4D52011D3F74210034F9F2 /* MessageCenterTableViewController.h */,
-				0F4D52021D3F74210034F9F2 /* MessageCenterTableViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		0FB137041D4A597400B0312B /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Lib;
+			sourceTree = "<group>";
+		};
+		0FB137051D4A5A0700B0312B /* Temp */ = {
+			isa = PBXGroup;
+			children = (
 				0F4D52101D3FC1D60034F9F2 /* Test1ViewController.h */,
 				0F4D52111D3FC1D60034F9F2 /* Test1ViewController.m */,
 				0F4D52121D3FC1D60034F9F2 /* Test1ViewController.xib */,
@@ -137,13 +320,19 @@
 				0F5B1F131D411C96005A66B7 /* Test3TVController.h */,
 				0F5B1F141D411C96005A66B7 /* Test3TVController.m */,
 				0F5B1F151D411C96005A66B7 /* Test3TVController.xib */,
-				0F4D52041D3F744A0034F9F2 /* DiscoverTableViewController.h */,
-				0F4D52051D3F744A0034F9F2 /* DiscoverTableViewController.m */,
-				0F4D52071D3F745E0034F9F2 /* ProfileTableViewController.h */,
-				0F4D52081D3F745E0034F9F2 /* ProfileTableViewController.m */,
-				0F4D51EA1D3F242B0034F9F2 /* main.m */,
 			);
-			name = Classes;
+			name = Temp;
+			sourceTree = "<group>";
+		};
+		0FB137061D4A5A4300B0312B /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				0F4D52421D408E500034F9F2 /* UIView+Extension.h */,
+				0F4D52431D408E500034F9F2 /* UIView+Extension.m */,
+				0FB1370A1D4B0A0600B0312B /* UIBarButtonItem+Extension.h */,
+				0FB1370B1D4B0A0600B0312B /* UIBarButtonItem+Extension.m */,
+			);
+			name = Category;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,6 +416,7 @@
 				0F4D51F81D3F24740034F9F2 /* AppDelegate.m in Sources */,
 				0F4D52091D3F745E0034F9F2 /* ProfileTableViewController.m in Sources */,
 				0F4D52031D3F74210034F9F2 /* MessageCenterTableViewController.m in Sources */,
+				0FB1370C1D4B0A0600B0312B /* UIBarButtonItem+Extension.m in Sources */,
 				0F4D52181D3FC7050034F9F2 /* Test2ViewController.m in Sources */,
 				0F5B1F161D411C96005A66B7 /* Test3TVController.m in Sources */,
 				0F4D51F01D3F242B0034F9F2 /* main.m in Sources */,
