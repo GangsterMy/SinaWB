@@ -20,11 +20,13 @@
     [super viewDidLoad];
     //@param style is setting for background
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"写私信" style:0 target:self action:@selector(composeMsg)];
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+//    SWBLog(@"MessageCenterTableViewController viewDidLoad");
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.navigationItem.rightBarButtonItem.enabled = NO;
+    
 
 }
 

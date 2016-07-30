@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "ProfileTableViewController.h"
 #import "Test1ViewController.h"
+#import "SearchBar.h"
 
 @interface ProfileTableViewController ()
 
@@ -18,6 +19,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:0 target:self action:@selector(setting)];
+    
+    SearchBar *searchBar = [SearchBar searchBar];
+    searchBar.width = 300;
+    searchBar.height = 30;
+    
+    [self.view addSubview:searchBar];
+    
+//     SWBLog(@"ProfileTableViewController viewDidLoad");
+    
 }
 
 -(void)setting {

@@ -7,6 +7,7 @@
 //
 #import <UIKit/UIKit.h>
 #import "DiscoverTableViewController.h"
+#import "SearchBar.h"
 
 @interface DiscoverTableViewController ()
 
@@ -16,12 +17,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    SearchBar *searchBar = [SearchBar searchBar];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    searchBar.width = 300;
+    searchBar.height = 30;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.titleView = searchBar;
+    
+//    SWBLog(@"DiscoverTableViewController viewDidLoad");
 }
 
 - (void)didReceiveMemoryWarning {

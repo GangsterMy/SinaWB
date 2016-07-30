@@ -52,7 +52,8 @@
     selectedTextAttrs[NSForegroundColorAttributeName] = [UIColor orangeColor];
     [childVc.tabBarItem setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
     [childVc.tabBarItem setTitleTextAttributes:selectedTextAttrs forState:UIControlStateSelected];
-    childVc.view.backgroundColor = WBRandomColor;
+//    childVc.view.backgroundColor = WBRandomColor;
+    //make four views created before add?
     
     //add a NavigationController to childVcs
     NavigationController *nav = [[NavigationController alloc] initWithRootViewController:childVc];

@@ -7,6 +7,7 @@
 //
 #import <UIKit/UIKit.h>
 #import "HomeTableViewController.h"
+#import "SearchBar.h"
 
 @interface HomeTableViewController ()
 
@@ -18,10 +19,18 @@
     [super viewDidLoad];
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(friendSearch) image:@"navigationbar_friendsearch" highImage:@"navigationbar_friendsearch_highlighted"];
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(pop) image:@"navigationbar_pop" highImage:@"navigationbar_pop_highlighted"];
+    
+    SearchBar *searchBar = [SearchBar searchBar];
+    searchBar.width = 300;
+    searchBar.height = 30;
+    
+    [self.view addSubview:searchBar];
+    
+//    SWBLog(@"HomeTableViewController viewDidLoad");
 }
 
 -(void)friendSearch {
-    NSLog(@"friendSearch");
+    SWBLog(@"friendSearch");
 }
 
 -(void)pop {

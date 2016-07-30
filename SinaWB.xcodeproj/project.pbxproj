@@ -27,6 +27,7 @@
 		0F5B1F171D411C96005A66B7 /* Test3TVController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F5B1F151D411C96005A66B7 /* Test3TVController.xib */; };
 		0F5B1F1B1D41227A005A66B7 /* Test1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F4D52111D3FC1D60034F9F2 /* Test1ViewController.m */; };
 		0FB1370C1D4B0A0600B0312B /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB1370B1D4B0A0600B0312B /* UIBarButtonItem+Extension.m */; };
+		0FB137151D4C9B8800B0312B /* SearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB137141D4C9B8800B0312B /* SearchBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,8 @@
 		0F5B1F151D411C96005A66B7 /* Test3TVController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Test3TVController.xib; sourceTree = "<group>"; };
 		0FB1370A1D4B0A0600B0312B /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
 		0FB1370B1D4B0A0600B0312B /* UIBarButtonItem+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extension.m"; sourceTree = "<group>"; };
+		0FB137131D4C9B8800B0312B /* SearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBar.h; sourceTree = "<group>"; };
+		0FB137141D4C9B8800B0312B /* SearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchBar.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -279,6 +282,8 @@
 		0FB136FE1D4A58C200B0312B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0FB137131D4C9B8800B0312B /* SearchBar.h */,
+				0FB137141D4C9B8800B0312B /* SearchBar.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -422,6 +427,7 @@
 				0F4D51F01D3F242B0034F9F2 /* main.m in Sources */,
 				0F4D520F1D3FACD10034F9F2 /* MainTabBarController.m in Sources */,
 				0F4D51F21D3F242B0034F9F2 /* ViewController.m in Sources */,
+				0FB137151D4C9B8800B0312B /* SearchBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
