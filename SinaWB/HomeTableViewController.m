@@ -40,27 +40,36 @@
     titleBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 40);
     
     //监听标题点击
-    [titleBtn addTarget:self action:@selector(titleClick:) forControlEvents:UIControlEventTouchUpInside];
+    [titleBtn addTarget:self action:@selector(titleClick: ) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.titleView = titleBtn;
+    
+    UIButton *btn = [[UIButton alloc] init];
+    btn.width = 100;
+    btn.x = 80;
+    btn.y = 30;
+    btn.height = 30;
+    btn.backgroundColor = [UIColor redColor];
+    [btn addTarget:self action:@selector(titleClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
     
 //    SWBLog(@"HomeTableViewController viewDidLoad");
 }
 
 -(void)titleClick:(UIButton *)titleBtn {
     
-    //set dropdownmenu
+    //1.set dropdownmenu
     DropdownMenu *menu = [DropdownMenu menu];
     
-    //set content
+    //2.set content
 //    menu.content = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 0, 100)];
     TitleMenuTVC *vc = [[TitleMenuTVC alloc] init];
     vc.view.height = 44 * 3;
+    vc.view.width = 150;
     menu.contentController = vc;
     
-    
-    //show
+    //3.show
     [menu showFrom:titleBtn];
-//    [menu dismiss];
+
 }
 
 -(void)friendSearch {
