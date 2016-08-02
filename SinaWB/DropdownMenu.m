@@ -84,7 +84,10 @@
     
     //4.reset menu image position
     //convert coordinate
-    CGRect newFrame = [from.superview convertRect:from.frame toView:window]; //nil = window
+    
+    //bounds only relate to itself, frame relate to superview
+    CGRect newFrame = [from convertRect:from.bounds toView:window];
+//    CGRect newFrame = [from.superview convertRect:from.frame toView:window]; //nil = window
     self.containerView.centerX = CGRectGetMidX(newFrame);
     self.containerView.y = CGRectGetMaxY(newFrame);
 }
