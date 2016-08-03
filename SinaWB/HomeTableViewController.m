@@ -11,7 +11,7 @@
 #import "DropdownMenu.h"
 #import "TitleMenuTVC.h"
 
-@interface HomeTableViewController ()
+@interface HomeTableViewController () <DropdownMenuDelegate>
 
 @end
 
@@ -34,6 +34,7 @@
     [titleBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     titleBtn.titleLabel.font = [UIFont boldSystemFontOfSize:17];
     [titleBtn setImage:[UIImage imageNamed:@"navigationbar_arrow_down"] forState:UIControlStateNormal];
+    [titleBtn setImage:[UIImage imageNamed:@"navigationbar_arrow_up"] forState:UIControlStateSelected];
 //    titleBtn.imageView.backgroundColor = [UIColor redColor];
 //    titleBtn.titleLabel.backgroundColor = [UIColor blueColor];
     titleBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 70, 0, 0);
@@ -43,22 +44,14 @@
     [titleBtn addTarget:self action:@selector(titleClick: ) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.titleView = titleBtn;
     
-    UIButton *btn = [[UIButton alloc] init];
-    btn.width = 100;
-    btn.x = 80;
-    btn.y = 30;
-    btn.height = 30;
-    btn.backgroundColor = [UIColor redColor];
-    [btn addTarget:self action:@selector(titleClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btn];
-    
-//    SWBLog(@"HomeTableViewController viewDidLoad");
+    //    SWBLog(@"HomeTableViewController viewDidLoad");
 }
 
 -(void)titleClick:(UIButton *)titleBtn {
     
     //1.set dropdownmenu
     DropdownMenu *menu = [DropdownMenu menu];
+    menu.delegate = self;
     
     //2.set content
 //    menu.content = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 0, 100)];
@@ -69,7 +62,7 @@
     
     //3.show
     [menu showFrom:titleBtn];
-
+    
 }
 
 -(void)friendSearch {
@@ -78,6 +71,21 @@
 
 -(void)pop {
     SWBLog(@"pop");
+}
+
+#pragma mark - DropdownMenuDelegate
+-(void)dropdownMenuDidDismiss:(DropdownMenu *)menu {
+    UIButton *titleBtn = (UIButton *) self.navigationItem.titleView;
+    titleBtn.selected = NO;
+//    [titleBtn setImage:[UIImage imageNamed:@"navigationbar_arrow_down"] forState:UIControlStateNormal];
+
+}
+
+-(void)dropdownMenuDidShow:(DropdownMenu *)menu {
+    UIButton *titleBtn = (UIButton *) self.navigationItem.titleView;
+    titleBtn.selected = YES;
+//    [titleBtn setImage:[UIImage imageNamed:@"navigationbar_arrow_up"] forState:UIControlStateNormal];
+
 }
 
 @end

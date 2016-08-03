@@ -16,7 +16,7 @@
 -(void)tabBarDidClickPlusButton:(SWBTabBar *)tabBar;
 @end
 
-@interface SWBTabBar : UITabBar
+@interface SWBTabBar : UITabBar //最彻底的继承是UIView 用于自定义与系统自带有明显差别
 @property (nonatomic, weak) id<SWBTabBarDelegate> delegate;
 
 @end
