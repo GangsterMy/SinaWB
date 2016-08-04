@@ -31,6 +31,7 @@
 		0FB1370C1D4B0A0600B0312B /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB1370B1D4B0A0600B0312B /* UIBarButtonItem+Extension.m */; };
 		0FB137151D4C9B8800B0312B /* SearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB137141D4C9B8800B0312B /* SearchBar.m */; };
 		0FFC71681D502C5E00F0DF8E /* SWBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FFC71671D502C5E00F0DF8E /* SWBTabBar.m */; };
+		0FFC71791D52E16E00F0DF8E /* NewfeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FFC71781D52E16E00F0DF8E /* NewfeatureViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +78,8 @@
 		0FB137141D4C9B8800B0312B /* SearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchBar.m; sourceTree = "<group>"; };
 		0FFC71661D502C5E00F0DF8E /* SWBTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWBTabBar.h; sourceTree = "<group>"; };
 		0FFC71671D502C5E00F0DF8E /* SWBTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWBTabBar.m; sourceTree = "<group>"; };
+		0FFC71771D52E16E00F0DF8E /* NewfeatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewfeatureViewController.h; sourceTree = "<group>"; };
+		0FFC71781D52E16E00F0DF8E /* NewfeatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewfeatureViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +134,7 @@
 		0F2F7F991D3EFC2E00E0FE5B /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				0FFC71751D52E10700F0DF8E /* Newfeature */,
 				0FB137051D4A5A0700B0312B /* Temp */,
 				0FB136F01D4A575000B0312B /* Main */,
 				0FB136EC1D4A56FD00B0312B /* Home */,
@@ -355,6 +359,23 @@
 			name = Category;
 			sourceTree = "<group>";
 		};
+		0FFC71751D52E10700F0DF8E /* Newfeature */ = {
+			isa = PBXGroup;
+			children = (
+				0FFC71761D52E12B00F0DF8E /* Controller */,
+			);
+			name = Newfeature;
+			sourceTree = "<group>";
+		};
+		0FFC71761D52E12B00F0DF8E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0FFC71771D52E16E00F0DF8E /* NewfeatureViewController.h */,
+				0FFC71781D52E16E00F0DF8E /* NewfeatureViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -436,6 +457,7 @@
 				0F66E0961D4D236000EC0355 /* TitleMenuTVC.m in Sources */,
 				0F4D52441D408E500034F9F2 /* UIView+Extension.m in Sources */,
 				0F4D51F81D3F24740034F9F2 /* AppDelegate.m in Sources */,
+				0FFC71791D52E16E00F0DF8E /* NewfeatureViewController.m in Sources */,
 				0F4D52091D3F745E0034F9F2 /* ProfileTableViewController.m in Sources */,
 				0F4D52031D3F74210034F9F2 /* MessageCenterTableViewController.m in Sources */,
 				0FB1370C1D4B0A0600B0312B /* UIBarButtonItem+Extension.m in Sources */,
