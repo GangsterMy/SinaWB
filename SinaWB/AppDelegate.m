@@ -23,8 +23,8 @@
     self.window = [[UIWindow alloc] init];
     
     //2.set rootViewController
-//    self.window.rootViewController = [[MainTabBarController alloc] init];
-    self.window.rootViewController = [[NewfeatureViewController alloc] init];
+    self.window.rootViewController = [[MainTabBarController alloc] init];
+//    self.window.rootViewController = [[NewfeatureViewController alloc] init];
 
     //4.show window
     [self.window makeKeyAndVisible];

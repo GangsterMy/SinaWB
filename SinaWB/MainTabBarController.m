@@ -37,10 +37,12 @@
     [self addChildVc:profile title:@"我" image:@"tabbar_profile" selectedImage:@"tabbar_profile_selected"];
     
     //2.change system tabbar
-    //    self.tabBar = [[SWBTabBar alloc] init]; //read only kvc
     SWBTabBar *tabBar = [[SWBTabBar alloc] init];
-    tabBar.delegate = self;
-    [self setValue:[[SWBTabBar alloc] init] forKeyPath:@"tabBar"];
+//    tabBar.delegate = self;
+//系统自带tabbar就有delegate 为tabbarviewcontroller
+//    self.tabBar = [[SWBTabBar alloc] init]; //read only kvc
+//如果self.tabBar在设置代理之上 则为系统属性 read only
+    [self setValue:tabBar forKeyPath:@"tabBar"]; //这行代码之后 delegate为系统tabbarviewcontroller 不用另设置
     //    SWBLog(@"%@", self.tabBar);
     //    SWBLog(@"%@", self.tabBar.subviews);
     
