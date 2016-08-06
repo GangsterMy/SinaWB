@@ -134,8 +134,8 @@
 		0F2F7F991D3EFC2E00E0FE5B /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				0FFC71751D52E10700F0DF8E /* Newfeature */,
 				0FB137051D4A5A0700B0312B /* Temp */,
+				0FFC71751D52E10700F0DF8E /* Newfeature */,
 				0FB136F01D4A575000B0312B /* Main */,
 				0FB136EC1D4A56FD00B0312B /* Home */,
 				0FB136ED1D4A571700B0312B /* MessageCenter */,

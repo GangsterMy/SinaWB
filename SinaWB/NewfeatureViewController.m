@@ -7,6 +7,7 @@
 //
 
 #import "NewfeatureViewController.h"
+#import "MainTabBarController.h"
 #define NewfeatureCount 4
 
 @interface NewfeatureViewController () <UIScrollViewDelegate>
@@ -109,12 +110,24 @@
     startBtn.centerX = shareBtn.centerX;
     startBtn.centerY = imageView.height * 0.8;
     [startBtn setTitle:@"开始微博" forState:UIControlStateNormal];
+    [startBtn addTarget:self action:@selector(startClick) forControlEvents:UIControlEventTouchUpInside];
     startBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 5);
     [imageView addSubview:startBtn];
 }
 
+//需要传参 拿到按钮状态取反
 -(void)shareClick:(UIButton *)shareBtn {
     shareBtn.selected = !shareBtn.isSelected;
+}
+//不需要传参 直接做事情
+-(void)startClick {
+    //切换到SWBTabBar
+    //切换控制器的手段:
+    //1.push:依赖于UINavCtrl 控制器的切换是可逆的;
+    //2.modal:控制器切换是可逆的
+    //3.change window.rootViewController
+   UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    window.rootViewController = [[MainTabBarController alloc] init];
 }
 
 @end
