@@ -32,6 +32,7 @@
 		0FB137151D4C9B8800B0312B /* SearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB137141D4C9B8800B0312B /* SearchBar.m */; };
 		0FFC71681D502C5E00F0DF8E /* SWBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FFC71671D502C5E00F0DF8E /* SWBTabBar.m */; };
 		0FFC71791D52E16E00F0DF8E /* NewfeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FFC71781D52E16E00F0DF8E /* NewfeatureViewController.m */; };
+		0FFC719F1D570CC300F0DF8E /* OAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FFC719E1D570CC300F0DF8E /* OAuthViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +81,8 @@
 		0FFC71671D502C5E00F0DF8E /* SWBTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWBTabBar.m; sourceTree = "<group>"; };
 		0FFC71771D52E16E00F0DF8E /* NewfeatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewfeatureViewController.h; sourceTree = "<group>"; };
 		0FFC71781D52E16E00F0DF8E /* NewfeatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewfeatureViewController.m; sourceTree = "<group>"; };
+		0FFC719D1D570CC300F0DF8E /* OAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthViewController.h; sourceTree = "<group>"; };
+		0FFC719E1D570CC300F0DF8E /* OAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				0FB137051D4A5A0700B0312B /* Temp */,
+				0FFC719B1D570C0D00F0DF8E /* OAuth */,
 				0FFC71751D52E10700F0DF8E /* Newfeature */,
 				0FB136F01D4A575000B0312B /* Main */,
 				0FB136EC1D4A56FD00B0312B /* Home */,
@@ -376,6 +380,23 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
+		0FFC719B1D570C0D00F0DF8E /* OAuth */ = {
+			isa = PBXGroup;
+			children = (
+				0FFC719C1D570C8900F0DF8E /* Controller */,
+			);
+			name = OAuth;
+			sourceTree = "<group>";
+		};
+		0FFC719C1D570C8900F0DF8E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0FFC719D1D570CC300F0DF8E /* OAuthViewController.h */,
+				0FFC719E1D570CC300F0DF8E /* OAuthViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -453,6 +474,7 @@
 				0F4D52061D3F744A0034F9F2 /* DiscoverTableViewController.m in Sources */,
 				0F5B1F1B1D41227A005A66B7 /* Test1ViewController.m in Sources */,
 				0F4D52001D3F73FF0034F9F2 /* HomeTableViewController.m in Sources */,
+				0FFC719F1D570CC300F0DF8E /* OAuthViewController.m in Sources */,
 				0F4994BE1D45CD8000C57601 /* NavigationController.m in Sources */,
 				0F66E0961D4D236000EC0355 /* TitleMenuTVC.m in Sources */,
 				0F4D52441D408E500034F9F2 /* UIView+Extension.m in Sources */,
