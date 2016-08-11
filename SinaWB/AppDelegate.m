@@ -11,6 +11,7 @@
 #import "MainTabBarController.h"
 #import "NewfeatureViewController.h"
 #import "OAuthViewController.h"
+#import "Account.h"
 
 @interface AppDelegate ()
 
@@ -22,27 +23,36 @@
     
     //1.create window
     self.window = [[UIWindow alloc] init];
+    self.window.frame = [UIScreen mainScreen].bounds;
     
     //2.set rootViewController
-    self.window.rootViewController = [[OAuthViewController alloc] init];
-//    NSString *key = @"CFBundleVersion";
-//    //存储在沙盒中的last version
-//    NSString *lastVersion = [[NSUserDefaults standardUserDefaults] objectForKey:key];
-//    
-//    //Info.plist current version
-//    NSString *currentVersion = [NSBundle mainBundle].infoDictionary[key];
-////    SWBLog(@"%@", currentVersion);
-//    
-//    if ([currentVersion isEqualToString:lastVersion]) {
-//        self.window.rootViewController = [[MainTabBarController alloc] init];
-//    } else {
-//        self.window.rootViewController = [[NewfeatureViewController alloc] init];
-//    }
-//    
-//    //将current version 存进沙盒
-//    [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:key];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
     
+    NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *path = [doc stringByAppendingPathComponent:@"account.archive"];
+    Account *account = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+    
+    if (account) { //之前已登陆成功
+        NSString *key = @"CFBundleVersion";
+        //存储在沙盒中的last version
+        NSString *lastVersion = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+        
+        //Info.plist current version
+        NSString *currentVersion = [NSBundle mainBundle].infoDictionary[key];
+        //    SWBLog(@"%@", currentVersion);
+        
+        if ([currentVersion isEqualToString:lastVersion]) {
+            self.window.rootViewController = [[MainTabBarController alloc] init];
+        } else {
+            self.window.rootViewController = [[NewfeatureViewController alloc] init];
+            
+            //将current version 存进沙盒
+            [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:key];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
+    } else {
+        self.window.rootViewController = [[OAuthViewController alloc] init];
+    }
+
     //3.show window
     [self.window makeKeyAndVisible];
     
