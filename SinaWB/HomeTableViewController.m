@@ -44,6 +44,8 @@
     [titleBtn addTarget:self action:@selector(titleClick: ) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.titleView = titleBtn;
     
+//    SWBLog(@"%@", NSHomeDirectory());
+    
     //    SWBLog(@"HomeTableViewController viewDidLoad");
 }
 
