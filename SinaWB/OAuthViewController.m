@@ -12,6 +12,7 @@
 #import "MainTabBarController.h"
 #import "NewfeatureViewController.h"
 #import "Account.h"
+#import <MBProgressHUD.h>
 
 @interface OAuthViewController () <UIWebViewDelegate>
 
@@ -44,19 +45,27 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [webView loadRequest:request];
     
+    SWBLog(@"%@", NSHomeDirectory());
+    
 }
 
 #pragma mark - webViewDelegate
 -(void)webViewDidFinishLoad:(UIWebView *)webView {
-        SWBLog(@"-----webViewDidFinishLoad");
+    //    SWBLog(@"-----webViewDidFinishLoad");
+    [MBProgressHUD hideHUDForView:webView animated:YES];
 }
 
 -(void)webViewDidStartLoad:(UIWebView *)webView {
-        SWBLog(@"-----webViewDidStartLoad");
+    //    SWBLog(@"-----webViewDidStartLoad");
+    [MBProgressHUD showHUDAddedTo:webView animated:YES];
+}
+
+-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    [MBProgressHUD hideHUDForView:webView animated:YES];
 }
 
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    //    SWBLog(@"shouldStartLoadWithRequest--%@", request.URL.absoluteString);
+    //        SWBLog(@"shouldStartLoadWithRequest--%@", request.URL.absoluteString);
     
     /*拦截url截取code*/
     //1.get url
@@ -65,12 +74,11 @@
     NSRange range = [url rangeOfString:@"code="];
     if (range.length != 0) { //是回调地址
         //截取code后的参数值
-        int fromIndex = range.location + range.length;
+        long int fromIndex = range.location + range.length;
         NSString *code = [url substringFromIndex:fromIndex];
         //利用code换取accessToken
         [self accessTokenWithCode:code];
-       
-        return NO; //band loading redirect_url
+        return NO; //band redirectory url
         
         //        SWBLog(@"%@ %@", code, url);
     }
@@ -93,31 +101,24 @@
     params[@"code"] = code;
     params[@"redirect_uri"] = @"http://baidu.com";
     
-    
-    //    [mgr POST:@"https://api.weibo.com/oauth2/access_token" parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-    //        SWBLog(@"请求成功-%@", responseObject);
-    //    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-    //        SWBLog(@"请求失败-%@", error);
-    //    }];
-    
-    [self.manager POST:@"https://api.weibo.com/oauth2/access_token" parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
-        SWBLog(@"%@", uploadProgress);
+    //3.发送请求
+    [mgr POST:@"https://api.weibo.com/oauth2/access_token" parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+//        SWBLog(@"%@", uploadProgress);
     } success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *responseObject) {
+//        SWBLog(@"success-%@", responseObject);
         //沙盒路径
         NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
         NSString *path = [doc stringByAppendingPathComponent:@"account.archive"];
         
-        //讲返回的账号字典数据 --> 模型 存进沙盒
+        //将返回的账号字典数据 --> 模型 存进沙盒
         Account *account = [Account accountWithDict:responseObject];
-        //自定义对象的存储必须用NSKeyedArchiver 不再有writeToFile(字典-数组)
         [NSKeyedArchiver archiveRootObject:account toFile:path];
-    
+//        [responseObject writeToFile:path atomically:YES];
         
-        //change rootViewController
+        //switch rootViewController
         NSString *key = @"CFBundleVersion";
         //存储在沙盒中的last version
         NSString *lastVersion = [[NSUserDefaults standardUserDefaults] objectForKey:key];
-        
         //Info.plist current version
         NSString *currentVersion = [NSBundle mainBundle].infoDictionary[key];
         //    SWBLog(@"%@", currentVersion);
@@ -126,15 +127,14 @@
             window.rootViewController = [[MainTabBarController alloc] init];
         } else {
             window.rootViewController = [[NewfeatureViewController alloc] init];
+            
             //将current version 存进沙盒
             [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:key];
             [[NSUserDefaults standardUserDefaults] synchronize];
-
         }
-        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        SWBLog(@"请求失败-%@", error);
+//        SWBLog(@"failure-%@", error.description);
+        [MBProgressHUD hideAllHUDsForView:nil animated:YES];
     }];
 }
-
 @end
