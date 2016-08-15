@@ -30,6 +30,7 @@
 		0FB1370C1D4B0A0600B0312B /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB1370B1D4B0A0600B0312B /* UIBarButtonItem+Extension.m */; };
 		0FB137151D4C9B8800B0312B /* SearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB137141D4C9B8800B0312B /* SearchBar.m */; };
 		0FBC33691D5C0CC5005A9E96 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBC33681D5C0CC5005A9E96 /* Account.m */; };
+		0FBC33821D5F5CB5005A9E96 /* AccountTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBC33811D5F5CB5005A9E96 /* AccountTool.m */; };
 		0FFC71681D502C5E00F0DF8E /* SWBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FFC71671D502C5E00F0DF8E /* SWBTabBar.m */; };
 		0FFC71791D52E16E00F0DF8E /* NewfeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FFC71781D52E16E00F0DF8E /* NewfeatureViewController.m */; };
 		0FFC719F1D570CC300F0DF8E /* OAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FFC719E1D570CC300F0DF8E /* OAuthViewController.m */; };
@@ -82,6 +83,8 @@
 		0FB137141D4C9B8800B0312B /* SearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchBar.m; sourceTree = "<group>"; };
 		0FBC33671D5C0CC5005A9E96 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
 		0FBC33681D5C0CC5005A9E96 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
+		0FBC33801D5F5CB5005A9E96 /* AccountTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountTool.h; sourceTree = "<group>"; };
+		0FBC33811D5F5CB5005A9E96 /* AccountTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountTool.m; sourceTree = "<group>"; };
 		0FFC71661D502C5E00F0DF8E /* SWBTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWBTabBar.h; sourceTree = "<group>"; };
 		0FFC71671D502C5E00F0DF8E /* SWBTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWBTabBar.m; sourceTree = "<group>"; };
 		0FFC71771D52E16E00F0DF8E /* NewfeatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewfeatureViewController.h; sourceTree = "<group>"; };
@@ -384,6 +387,15 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		0FBC33791D5F5C0B005A9E96 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				0FBC33801D5F5CB5005A9E96 /* AccountTool.h */,
+				0FBC33811D5F5CB5005A9E96 /* AccountTool.m */,
+			);
+			name = Tool;
+			sourceTree = "<group>";
+		};
 		0FFC71751D52E10700F0DF8E /* Newfeature */ = {
 			isa = PBXGroup;
 			children = (
@@ -404,6 +416,7 @@
 		0FFC719B1D570C0D00F0DF8E /* OAuth */ = {
 			isa = PBXGroup;
 			children = (
+				0FBC33791D5F5C0B005A9E96 /* Tool */,
 				0FBC33661D5C0C6E005A9E96 /* Model */,
 				0FFC719C1D570C8900F0DF8E /* Controller */,
 			);
@@ -563,6 +576,7 @@
 				0FFC71681D502C5E00F0DF8E /* SWBTabBar.m in Sources */,
 				0F4D52061D3F744A0034F9F2 /* DiscoverTableViewController.m in Sources */,
 				0F5B1F1B1D41227A005A66B7 /* Test1ViewController.m in Sources */,
+				0FBC33821D5F5CB5005A9E96 /* AccountTool.m in Sources */,
 				0F4D52001D3F73FF0034F9F2 /* HomeTableViewController.m in Sources */,
 				0FFC719F1D570CC300F0DF8E /* OAuthViewController.m in Sources */,
 				0F4994BE1D45CD8000C57601 /* NavigationController.m in Sources */,

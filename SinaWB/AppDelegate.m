@@ -12,6 +12,7 @@
 #import "NewfeatureViewController.h"
 #import "OAuthViewController.h"
 #import "Account.h"
+#import "AccountTool.h"
 
 @interface AppDelegate ()
 
@@ -26,10 +27,11 @@
     
     //2.set rootViewController
     
-    NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString *path = [doc stringByAppendingPathComponent:@"account.archive"];
-    Account *account = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
-//    [NSDictionary dictionaryWithContentsOfFile:path];
+    Account *account = [AccountTool account];
+    
+    
+    
+    
     
     if (account) { //已经成功登录过
         NSString *key = @"CFBundleVersion";

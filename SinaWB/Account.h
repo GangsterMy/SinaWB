@@ -16,5 +16,8 @@
 //@property (nonatomic, copy) NSString *remind_in;
 @property (nonatomic, copy) NSString *uid;
 
+//accessToken获得时间
+@property (nonatomic, strong) NSDate *created_time;
+
 +(instancetype)accountWithDict:(NSDictionary *)dict;
 @end

@@ -13,6 +13,7 @@
 #import "NewfeatureViewController.h"
 #import "Account.h"
 #import <MBProgressHUD.h>
+#import "AccountTool.h"
 
 @interface OAuthViewController () <UIWebViewDelegate>
 
@@ -103,17 +104,12 @@
     
     //3.发送请求
     [mgr POST:@"https://api.weibo.com/oauth2/access_token" parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
-//        SWBLog(@"%@", uploadProgress);
+        //        SWBLog(@"%@", uploadProgress);
     } success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *responseObject) {
-//        SWBLog(@"success-%@", responseObject);
-        //沙盒路径
-        NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-        NSString *path = [doc stringByAppendingPathComponent:@"account.archive"];
+        //        SWBLog(@"success-%@", responseObject);
         
-        //将返回的账号字典数据 --> 模型 存进沙盒
         Account *account = [Account accountWithDict:responseObject];
-        [NSKeyedArchiver archiveRootObject:account toFile:path];
-//        [responseObject writeToFile:path atomically:YES];
+        [AccountTool saveAcoount:account];
         
         //switch rootViewController
         NSString *key = @"CFBundleVersion";
@@ -133,7 +129,7 @@
             [[NSUserDefaults standardUserDefaults] synchronize];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//        SWBLog(@"failure-%@", error.description);
+        //        SWBLog(@"failure-%@", error.description);
         [MBProgressHUD hideAllHUDsForView:nil animated:YES];
     }];
 }
