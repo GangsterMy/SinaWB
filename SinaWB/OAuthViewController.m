@@ -9,8 +9,6 @@
 #import "OAuthViewController.h"
 #import <AFNetworking.h>
 #import "SWBTabBar.h"
-#import "MainTabBarController.h"
-#import "NewfeatureViewController.h"
 #import "Account.h"
 #import <MBProgressHUD.h>
 #import "AccountTool.h"
@@ -112,22 +110,7 @@
         [AccountTool saveAcoount:account];
         
         //switch rootViewController
-        NSString *key = @"CFBundleVersion";
-        //存储在沙盒中的last version
-        NSString *lastVersion = [[NSUserDefaults standardUserDefaults] objectForKey:key];
-        //Info.plist current version
-        NSString *currentVersion = [NSBundle mainBundle].infoDictionary[key];
-        //    SWBLog(@"%@", currentVersion);
-        UIWindow *window = [UIApplication sharedApplication].keyWindow;
-        if ([currentVersion isEqualToString:lastVersion]) {
-            window.rootViewController = [[MainTabBarController alloc] init];
-        } else {
-            window.rootViewController = [[NewfeatureViewController alloc] init];
-            
-            //将current version 存进沙盒
-            [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:key];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-        }
+        [UIWindow switchRootViewController];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         //        SWBLog(@"failure-%@", error.description);
         [MBProgressHUD hideAllHUDsForView:nil animated:YES];

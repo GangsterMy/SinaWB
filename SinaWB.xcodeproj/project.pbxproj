@@ -31,6 +31,7 @@
 		0FB137151D4C9B8800B0312B /* SearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB137141D4C9B8800B0312B /* SearchBar.m */; };
 		0FBC33691D5C0CC5005A9E96 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBC33681D5C0CC5005A9E96 /* Account.m */; };
 		0FBC33821D5F5CB5005A9E96 /* AccountTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBC33811D5F5CB5005A9E96 /* AccountTool.m */; };
+		0FBC33851D62192D005A9E96 /* UIWindow+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBC33841D62192D005A9E96 /* UIWindow+Extension.m */; };
 		0FFC71681D502C5E00F0DF8E /* SWBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FFC71671D502C5E00F0DF8E /* SWBTabBar.m */; };
 		0FFC71791D52E16E00F0DF8E /* NewfeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FFC71781D52E16E00F0DF8E /* NewfeatureViewController.m */; };
 		0FFC719F1D570CC300F0DF8E /* OAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FFC719E1D570CC300F0DF8E /* OAuthViewController.m */; };
@@ -85,6 +86,8 @@
 		0FBC33681D5C0CC5005A9E96 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
 		0FBC33801D5F5CB5005A9E96 /* AccountTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountTool.h; sourceTree = "<group>"; };
 		0FBC33811D5F5CB5005A9E96 /* AccountTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountTool.m; sourceTree = "<group>"; };
+		0FBC33831D62192D005A9E96 /* UIWindow+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+Extension.h"; sourceTree = "<group>"; };
+		0FBC33841D62192D005A9E96 /* UIWindow+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+Extension.m"; sourceTree = "<group>"; };
 		0FFC71661D502C5E00F0DF8E /* SWBTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWBTabBar.h; sourceTree = "<group>"; };
 		0FFC71671D502C5E00F0DF8E /* SWBTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWBTabBar.m; sourceTree = "<group>"; };
 		0FFC71771D52E16E00F0DF8E /* NewfeatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewfeatureViewController.h; sourceTree = "<group>"; };
@@ -372,6 +375,8 @@
 			children = (
 				0F4D52421D408E500034F9F2 /* UIView+Extension.h */,
 				0F4D52431D408E500034F9F2 /* UIView+Extension.m */,
+				0FBC33831D62192D005A9E96 /* UIWindow+Extension.h */,
+				0FBC33841D62192D005A9E96 /* UIWindow+Extension.m */,
 				0FB1370A1D4B0A0600B0312B /* UIBarButtonItem+Extension.h */,
 				0FB1370B1D4B0A0600B0312B /* UIBarButtonItem+Extension.m */,
 			);
@@ -589,6 +594,7 @@
 				0FB1370C1D4B0A0600B0312B /* UIBarButtonItem+Extension.m in Sources */,
 				0F4D52181D3FC7050034F9F2 /* Test2ViewController.m in Sources */,
 				0F5B1F161D411C96005A66B7 /* Test3TVController.m in Sources */,
+				0FBC33851D62192D005A9E96 /* UIWindow+Extension.m in Sources */,
 				0F66E0931D4D0F5300EC0355 /* DropdownMenu.m in Sources */,
 				0F4D51F01D3F242B0034F9F2 /* main.m in Sources */,
 				0F4D520F1D3FACD10034F9F2 /* MainTabBarController.m in Sources */,

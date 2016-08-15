@@ -7,6 +7,7 @@
 //
 #import "UIView+Extension.h"
 #import "UIBarButtonItem+Extension.h"
+#import "UIWindow+Extension.h"
 
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch

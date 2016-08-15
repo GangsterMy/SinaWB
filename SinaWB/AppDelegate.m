@@ -8,8 +8,6 @@
 
 #import "AppDelegate.h"
 #import <UIKit/UIKit.h>
-#import "MainTabBarController.h"
-#import "NewfeatureViewController.h"
 #import "OAuthViewController.h"
 #import "Account.h"
 #import "AccountTool.h"
@@ -25,38 +23,18 @@
     //1.create window
     self.window = [[UIWindow alloc] init];
     
-    //2.set rootViewController
+    //3.show window
+    [self.window makeKeyAndVisible];
     
+    //2.set rootViewController
     Account *account = [AccountTool account];
     
-    
-    
-    
-    
     if (account) { //已经成功登录过
-        NSString *key = @"CFBundleVersion";
-        //存储在沙盒中的last version
-        NSString *lastVersion = [[NSUserDefaults standardUserDefaults] objectForKey:key];
-        //Info.plist current version
-        NSString *currentVersion = [NSBundle mainBundle].infoDictionary[key];
-        //    SWBLog(@"%@", currentVersion);
-        if ([currentVersion isEqualToString:lastVersion]) {
-            self.window.rootViewController = [[MainTabBarController alloc] init];
-        } else {
-            self.window.rootViewController = [[NewfeatureViewController alloc] init];
-            
-            //将current version 存进沙盒
-            [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:key];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-        }
+        [UIWindow switchRootViewController];
+        
     } else {
         self.window.rootViewController = [[OAuthViewController alloc] init];
     }
-    
-    
-    
-    //3.show window
-    [self.window makeKeyAndVisible];
     
     return YES;
 }
