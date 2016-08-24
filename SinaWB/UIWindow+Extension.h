@@ -10,6 +10,6 @@
 
 @interface UIWindow (Extension)
 
-+(void)switchRootViewController;
+-(void)switchRootViewController;
 
 @end

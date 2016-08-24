@@ -8,7 +8,6 @@
 
 #define AccountPath [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"account.archive"]
 #import "AccountTool.h"
-#import "Account.h"
 
 @implementation AccountTool
 
@@ -16,9 +15,6 @@
     //沙盒路径
     //    NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     //    NSString *path = [doc stringByAppendingPathComponent:@"account.archive"];
-    
-    //获得账号存储的时间accessToken产生时间
-    account.created_time = [NSDate date];
     
     //自定义对象的存储必须用NSKeyedArchiver 不再有writeToFile
     [NSKeyedArchiver archiveRootObject:account toFile:AccountPath];

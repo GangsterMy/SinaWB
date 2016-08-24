@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Account.h"
+
 @class Account;
 @interface AccountTool : NSObject
 

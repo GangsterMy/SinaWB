@@ -90,7 +90,7 @@
 -(void)accessTokenWithCode:(NSString *)code {
     //1.请求管理者
     AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
-    mgr.responseSerializer = [AFJSONResponseSerializer serializer];
+//    mgr.responseSerializer = [AFJSONResponseSerializer serializer];
     
     //2.拼接请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -110,7 +110,8 @@
         [AccountTool saveAcoount:account];
         
         //switch rootViewController
-        [UIWindow switchRootViewController];
+        UIWindow *window = [UIApplication sharedApplication].keyWindow;
+        [window switchRootViewController];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         //        SWBLog(@"failure-%@", error.description);
         [MBProgressHUD hideAllHUDsForView:nil animated:YES];

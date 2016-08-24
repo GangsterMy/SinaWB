@@ -12,7 +12,7 @@
 
 @implementation UIWindow (Extension)
 
-+(void)switchRootViewController {
+-(void)switchRootViewController {
     
     NSString *key = @"CFBundleVersion";
    
@@ -21,16 +21,14 @@
     //Info.plist current version
     NSString *currentVersion = [NSBundle mainBundle].infoDictionary[key];
     //    SWBLog(@"%@", currentVersion);
-   
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
     
     if ([currentVersion isEqualToString:lastVersion]) {
        
-        window.rootViewController = [[MainTabBarController alloc] init];
+        self.rootViewController = [[MainTabBarController alloc] init];
    
     } else {
        
-        window.rootViewController = [[NewfeatureViewController alloc] init];
+        self.rootViewController = [[NewfeatureViewController alloc] init];
         
         //将current version 存进沙盒
         [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:key];

@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import <UIKit/UIKit.h>
 #import "OAuthViewController.h"
-#import "Account.h"
 #import "AccountTool.h"
 
 @interface AppDelegate ()
@@ -30,9 +29,11 @@
     Account *account = [AccountTool account];
     
     if (account) { //已经成功登录过
-        [UIWindow switchRootViewController];
+        
+        [self.window switchRootViewController];
         
     } else {
+       
         self.window.rootViewController = [[OAuthViewController alloc] init];
     }
     
