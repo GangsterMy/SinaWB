@@ -13,6 +13,7 @@
 #import <AFNetworking.h>
 #import "AccountTool.h"
 #import <MBProgressHUD.h>
+#import "TitleButton.h"
 
 @interface HomeTableViewController () <DropdownMenuDelegate>
 
@@ -60,6 +61,7 @@
         //设置名字
         NSString *name = responseObject[@"name"];
         [titleBtn setTitle:name forState:UIControlStateNormal];
+//        [titleBtn sizeToFit];
         
         //存储昵称到沙盒
         account.name = name;
@@ -78,7 +80,7 @@
     
     /* title button */
     //    UIButton *titleBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIButton *titleBtn = [[UIButton alloc] init];
+    TitleButton *titleBtn = [[TitleButton alloc] init];
     titleBtn.width = 150;
     titleBtn.height = 30;
     
@@ -86,27 +88,21 @@
     NSString *name = [AccountTool account].name;
     [titleBtn setTitle:name?name:@"首页" forState:UIControlStateNormal];
     [titleBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    titleBtn.titleLabel.font = [UIFont boldSystemFontOfSize:17];
-    [titleBtn setImage:[UIImage imageNamed:@"navigationbar_arrow_down"] forState:UIControlStateNormal];
-    [titleBtn setImage:[UIImage imageNamed:@"navigationbar_arrow_up"] forState:UIControlStateSelected];
-    
-    titleBtn.backgroundColor = [UIColor redColor];
-    titleBtn.imageView.backgroundColor = [UIColor yellowColor];
-    titleBtn.titleLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:1.0 alpha:0.2];
-    
-//    NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
-//    attrs[NSFontAttributeName] = titleBtn.titleLabel.font;
-//    CGFloat titleW = [titleBtn.currentTitle sizeWithAttributes:attrs].width;
-    CGFloat titleW = titleBtn.titleLabel.width;
-    //乘上scale系数 保证retina屏幕上宽度正确
-    CGFloat imageW = titleBtn.imageView.width * [UIScreen mainScreen].scale;
-    CGFloat left = titleW + imageW;
-    
-    titleBtn.imageEdgeInsets = UIEdgeInsetsMake(0, left, 0, 0);
+    //按钮自适应
+//    [titleBtn sizeToFit];
     
     //监听标题点击
     [titleBtn addTarget:self action:@selector(titleClick: ) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.titleView = titleBtn;
+    
+    //按钮内部图片文字固定时建议使用imageEdgeInsets titleEdgeInsets设置间距
+    //标题宽度
+    //    CGFloat titleW = titleBtn.titleLabel.width;
+    //    //乘上scale系数 保证retina屏幕上宽度正确
+    //    CGFloat imageW = titleBtn.imageView.width * [UIScreen mainScreen].scale;
+    //    CGFloat left = titleW + imageW;
+    //    titleBtn.imageEdgeInsets = UIEdgeInsetsMake(0, left, 0, 0);
+    
 }
 
 -(void)titleClick:(UIButton *)titleBtn {

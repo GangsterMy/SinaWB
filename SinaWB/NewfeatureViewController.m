@@ -52,7 +52,7 @@
     //去除弹簧效果
     scrollView.bounces = NO;
     scrollView.pagingEnabled = YES;
-    scrollView.showsHorizontalScrollIndicator = NO;
+    scrollView.showsHorizontalScrollIndicator = YES;
     scrollView.delegate = self;
     
     //4.add pageController
@@ -126,7 +126,7 @@
     //1.push:依赖于UINavCtrl 控制器的切换是可逆的;
     //2.modal:控制器切换是可逆的
     //3.change window.rootViewController
-   UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
     window.rootViewController = [[MainTabBarController alloc] init];
 }
 

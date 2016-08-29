@@ -25,6 +25,7 @@
     //3.show window
     [self.window makeKeyAndVisible];
     
+    
     //2.set rootViewController
     Account *account = [AccountTool account];
     

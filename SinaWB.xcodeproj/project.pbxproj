@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F21A53E1D745B0E006F5EB3 /* TitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F21A53D1D745B0E006F5EB3 /* TitleButton.m */; };
 		0F2F7F8F1D3EFB6800E0FE5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F2F7F8E1D3EFB6800E0FE5B /* Assets.xcassets */; };
 		0F4994BE1D45CD8000C57601 /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F4994BD1D45CD8000C57601 /* NavigationController.m */; };
 		0F4D51EF1D3F242B0034F9F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F4D51E91D3F242B0034F9F2 /* LaunchScreen.storyboard */; };
@@ -41,6 +42,8 @@
 
 /* Begin PBXFileReference section */
 		0E5F76D071AD8382E1384970 /* libPods-SinaWB.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SinaWB.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F21A53C1D745B0E006F5EB3 /* TitleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleButton.h; sourceTree = "<group>"; };
+		0F21A53D1D745B0E006F5EB3 /* TitleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleButton.m; sourceTree = "<group>"; };
 		0F2F7F7F1D3EFB6700E0FE5B /* SinaWB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SinaWB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F2F7F8E1D3EFB6800E0FE5B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0F4994BC1D45CD8000C57601 /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
@@ -227,6 +230,8 @@
 			children = (
 				0F66E0941D4D236000EC0355 /* TitleMenuTVC.h */,
 				0F66E0951D4D236000EC0355 /* TitleMenuTVC.m */,
+				0F21A53C1D745B0E006F5EB3 /* TitleButton.h */,
+				0F21A53D1D745B0E006F5EB3 /* TitleButton.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -584,6 +589,7 @@
 				0FBC33821D5F5CB5005A9E96 /* AccountTool.m in Sources */,
 				0F4D52001D3F73FF0034F9F2 /* HomeTableViewController.m in Sources */,
 				0FFC719F1D570CC300F0DF8E /* OAuthViewController.m in Sources */,
+				0F21A53E1D745B0E006F5EB3 /* TitleButton.m in Sources */,
 				0F4994BE1D45CD8000C57601 /* NavigationController.m in Sources */,
 				0F66E0961D4D236000EC0355 /* TitleMenuTVC.m in Sources */,
 				0F4D52441D408E500034F9F2 /* UIView+Extension.m in Sources */,
