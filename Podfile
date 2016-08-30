@@ -8,5 +8,6 @@ target 'SinaWB' do
   # Pods for SinaWB
 pod 'AFNetworking', '~> 3.0'
 pod 'MBProgressHUD'
+pod 'SDWebImage'
 
 end

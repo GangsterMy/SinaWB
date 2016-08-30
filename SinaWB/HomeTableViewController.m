@@ -14,8 +14,11 @@
 #import "AccountTool.h"
 #import <MBProgressHUD.h>
 #import "TitleButton.h"
+#import <UIImageView+WebCache.h>
 
 @interface HomeTableViewController () <DropdownMenuDelegate>
+//一个字典代表一条微博
+@property (nonatomic, strong) NSArray *statuses;
 
 @end
 
@@ -31,16 +34,37 @@
     //get user info (昵称)
     [self setupUserInfo];
     
-    //    SWBLog(@"%@", NSHomeDirectory());
+    //load latest data
+    [self loadNewStatus];
     
+    
+    //    SWBLog(@"%@", NSHomeDirectory());
+}
+
+-(void)loadNewStatus {
+    
+    //1.请求管理者
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
+    
+    //2.拼接请求参数
+    Account *account = [AccountTool account];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"access_token"] = account.access_token;
+    
+    //3.发送请求
+    [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+        //        SWBLog(@"%@", uploadProgress);
+    } success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *responseObject) {
+        //取得微博数组
+        self.statuses = responseObject[@"statuses"];//json返回字典中外层的statuses
+        //刷新表格
+        [self.tableView reloadData];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        SWBLog(@"failure-%@", error);
+    }];
 }
 
 -(void)setupUserInfo {
-    
-    //    https://api.weibo.com/2/users/show.json
-    //    access_token	true	string	采用OAuth授权方式为必填参数，OAuth授权后获得。
-    //    uid
-    //    GET
     
     //1.请求管理者
     AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
@@ -57,11 +81,10 @@
     } success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *responseObject) {
         //        SWBLog(@"success-%@", responseObject);
         //标题按钮
-        UIButton *titleBtn = (UIButton *)self.navigationItem.titleView;
+        TitleButton *titleBtn = (TitleButton *)self.navigationItem.titleView;
         //设置名字
         NSString *name = responseObject[@"name"];
         [titleBtn setTitle:name forState:UIControlStateNormal];
-//        [titleBtn sizeToFit];
         
         //存储昵称到沙盒
         account.name = name;
@@ -76,20 +99,16 @@
 -(void)setupNav {
     
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(friendSearch) image:@"navigationbar_friendsearch" highImage:@"navigationbar_friendsearch_highlighted"];
+    
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(pop) image:@"navigationbar_pop" highImage:@"navigationbar_pop_highlighted"];
     
     /* title button */
     //    UIButton *titleBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     TitleButton *titleBtn = [[TitleButton alloc] init];
-    titleBtn.width = 150;
-    titleBtn.height = 30;
     
     //set image and font
     NSString *name = [AccountTool account].name;
     [titleBtn setTitle:name?name:@"首页" forState:UIControlStateNormal];
-    [titleBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    //按钮自适应
-//    [titleBtn sizeToFit];
     
     //监听标题点击
     [titleBtn addTarget:self action:@selector(titleClick: ) forControlEvents:UIControlEventTouchUpInside];
@@ -145,5 +164,38 @@
     //    [titleBtn setImage:[UIImage imageNamed:@"navigationbar_arrow_up"] forState:UIControlStateNormal];
     
 }
+
+#pragma mark - Table view data source
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.statuses.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *ID = @"status";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
+    }
+    
+    //取出这行对应的微博字典
+    NSDictionary *status = self.statuses[indexPath.row];
+    
+    //取出这条微博的作者(用户)
+    NSDictionary *user = status[@"user"];
+    cell.textLabel.text = user[@"name"];
+    
+    //设置微博的文字
+    cell.detailTextLabel.text = status[@"text"];
+    
+    //设置头像
+    NSString *imageUrl = user[@"profile_image_url"];
+    UIImage *placehoder = [UIImage imageNamed:@"avatar_default_small"];
+    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:placehoder];
+//    SWBLog(@"%@",user);
+    
+    return cell;
+}
+
 
 @end

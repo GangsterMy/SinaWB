@@ -19,9 +19,9 @@
         [self setImage:[UIImage imageNamed:@"navigationbar_arrow_down"] forState:UIControlStateNormal];
         [self setImage:[UIImage imageNamed:@"navigationbar_arrow_up"] forState:UIControlStateSelected];
         
-        self.backgroundColor = [UIColor clearColor];
+
         self.imageView.backgroundColor = [UIColor clearColor];
-        self.titleLabel.backgroundColor = [UIColor clearColor];
+
     }
     return self;
 }
