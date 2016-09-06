@@ -37,6 +37,8 @@
 		0FFC71791D52E16E00F0DF8E /* NewfeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FFC71781D52E16E00F0DF8E /* NewfeatureViewController.m */; };
 		0FFC719F1D570CC300F0DF8E /* OAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FFC719E1D570CC300F0DF8E /* OAuthViewController.m */; };
 		0FFC71A11D579EB100F0DF8E /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 0FFC71A01D579EB100F0DF8E /* Podfile */; };
+		0FFCE98A1D7EEF9C00135D6B /* SWUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FFCE9891D7EEF9C00135D6B /* SWUser.m */; };
+		0FFCE98D1D7EEFB300135D6B /* SWStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FFCE98C1D7EEFB300135D6B /* SWStatus.m */; };
 		F766E0F8397147B3CE5E68E7 /* libPods-SinaWB.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5F76D071AD8382E1384970 /* libPods-SinaWB.a */; };
 /* End PBXBuildFile section */
 
@@ -98,6 +100,10 @@
 		0FFC719D1D570CC300F0DF8E /* OAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthViewController.h; sourceTree = "<group>"; };
 		0FFC719E1D570CC300F0DF8E /* OAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthViewController.m; sourceTree = "<group>"; };
 		0FFC71A01D579EB100F0DF8E /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		0FFCE9881D7EEF9C00135D6B /* SWUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUser.h; sourceTree = "<group>"; };
+		0FFCE9891D7EEF9C00135D6B /* SWUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUser.m; sourceTree = "<group>"; };
+		0FFCE98B1D7EEFB300135D6B /* SWStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWStatus.h; sourceTree = "<group>"; };
+		0FFCE98C1D7EEFB300135D6B /* SWStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWStatus.m; sourceTree = "<group>"; };
 		5827DA873ED2F8F0B225F14A /* Pods-SinaWB.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SinaWB.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SinaWB/Pods-SinaWB.debug.xcconfig"; sourceTree = "<group>"; };
 		6543ED4C3DD0D868BD6584AA /* Pods-SinaWB.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SinaWB.release.xcconfig"; path = "Pods/Target Support Files/Pods-SinaWB/Pods-SinaWB.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -248,6 +254,10 @@
 		0FB136F41D4A57E000B0312B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0FFCE9881D7EEF9C00135D6B /* SWUser.h */,
+				0FFCE9891D7EEF9C00135D6B /* SWUser.m */,
+				0FFCE98B1D7EEFB300135D6B /* SWStatus.h */,
+				0FFCE98C1D7EEFB300135D6B /* SWStatus.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -602,11 +612,13 @@
 				0F5B1F161D411C96005A66B7 /* Test3TVController.m in Sources */,
 				0FBC33851D62192D005A9E96 /* UIWindow+Extension.m in Sources */,
 				0F66E0931D4D0F5300EC0355 /* DropdownMenu.m in Sources */,
+				0FFCE98D1D7EEFB300135D6B /* SWStatus.m in Sources */,
 				0F4D51F01D3F242B0034F9F2 /* main.m in Sources */,
 				0F4D520F1D3FACD10034F9F2 /* MainTabBarController.m in Sources */,
 				0FBC33691D5C0CC5005A9E96 /* Account.m in Sources */,
 				0F4D51F21D3F242B0034F9F2 /* ViewController.m in Sources */,
 				0FB137151D4C9B8800B0312B /* SearchBar.m in Sources */,
+				0FFCE98A1D7EEF9C00135D6B /* SWUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
