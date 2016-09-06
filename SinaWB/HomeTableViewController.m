@@ -17,6 +17,7 @@
 #import <UIImageView+WebCache.h>
 #import "SWUser.h"
 #import "SWStatus.h"
+#import "MJExtension/MJExtension.h"
 
 @interface HomeTableViewController () <DropdownMenuDelegate>
 //一个字典代表一条微博 -> 数组里面放的是status模型
@@ -62,18 +63,15 @@
     
     //3.发送请求
     [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
-        //        SWBLog(@"%@", uploadProgress);
+        
     } success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *responseObject) {
-        //取得"微博字典"数组
-        NSArray *dictArray =responseObject[@"statuses"];
-       
+        
         //将"微博字典"数组转为"微博模型"数组
-        for (NSDictionary *dict in dictArray) {
-            SWStatus *status = [SWStatus statusWithDic:dict];
-            [self.statuses addObject:status];
-        }
+        self.statuses = [SWStatus mj_objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+        
         //刷新表格
         [self.tableView reloadData];
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         SWBLog(@"failure-%@", error);
     }];
@@ -94,13 +92,12 @@
     [mgr GET:@"https://api.weibo.com/2/users/show.json" parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
         //        SWBLog(@"%@", uploadProgress);
     } success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *responseObject) {
-        //        SWBLog(@"success-%@", responseObject);
+ 
         //标题按钮
         TitleButton *titleBtn = (TitleButton *)self.navigationItem.titleView;
-        //设置名字
-        SWUser *user = [SWUser userWithDict:responseObject];
-//        NSString *name = responseObject[@"name"];
         
+        //设置名字
+        SWUser *user = [SWUser mj_objectWithKeyValues:responseObject];
         [titleBtn setTitle:user.name forState:UIControlStateNormal];
         
         //存储昵称到沙盒
@@ -120,7 +117,6 @@
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(pop) image:@"navigationbar_pop" highImage:@"navigationbar_pop_highlighted"];
     
     /* title button */
-    //    UIButton *titleBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     TitleButton *titleBtn = [[TitleButton alloc] init];
     
     //set image and font
@@ -196,25 +192,25 @@
     }
     
     //取出这行对应的微博字典 ->微博字典模型
-//    NSDictionary *status = self.statuses[indexPath.row];
+    //    NSDictionary *status = self.statuses[indexPath.row];
     SWStatus  *status = self.statuses[indexPath.row];
     
     //取出这条微博的作者(用户)
-//    NSDictionary *user = status[@"user"];
-//    cell.textLabel.text = user[@"name"];
+    //    NSDictionary *user = status[@"user"];
+    //    cell.textLabel.text = user[@"name"];
     SWUser *user = status.user;
     cell.textLabel.text = user.name;
     
     //设置微博的文字
-//    cell.detailTextLabel.text = status[@"text"];
+    //    cell.detailTextLabel.text = status[@"text"];
     cell.detailTextLabel.text = status.text;
     
     //设置头像
-//    NSString *imageUrl = user[@"profile_image_url"];
+    //    NSString *imageUrl = user[@"profile_image_url"];
     NSString *imageUrl = user.profile_image_url;
     UIImage *placehoder = [UIImage imageNamed:@"avatar_default_small"];
     [cell.imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:placehoder];
-//    SWBLog(@"%@",user);
+    //    SWBLog(@"%@",user);
     
     return cell;
 }
