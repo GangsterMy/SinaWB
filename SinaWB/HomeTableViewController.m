@@ -45,13 +45,26 @@
     [self setupUserInfo];
     
     //load latest data
-    [self loadNewStatus];
+//    [self loadNewStatus];
     
+    //集成刷新控件
+    [self setupRefresh];
     
     //    SWBLog(@"%@", NSHomeDirectory());
 }
 
--(void)loadNewStatus {
+/**
+ *  集成刷新控件
+ */
+-(void)setupRefresh {
+    UIRefreshControl *control = [[UIRefreshControl alloc] init];
+    [control addTarget:self action:@selector(refreshStateChange:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:control];
+}
+/**
+ *  UIRefreshControl进入刷新状态:加载最新数据
+ */
+-(void)refreshStateChange:(UIRefreshControl *)control {
     
     //1.请求管理者
     AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
@@ -61,21 +74,69 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"access_token"] = account.access_token;
     
+    //取出最前面的微博(最新微博 since_id最大的微博)
+    SWStatus *firstStatus = [self.statuses firstObject];
+    if (firstStatus) {
+        //若指定此参数，则返回ID比since_id大的微博（即比since_id时间晚的微博），默认为0。
+        params[@"since_id"] = firstStatus.idstr;
+
+    }
+    
     //3.发送请求
     [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *responseObject) {
         
         //将"微博字典"数组转为"微博模型"数组
-        self.statuses = [SWStatus mj_objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+        NSArray *newStatuses = [SWStatus mj_objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+        
+        //将最新的微博数据添加到总数组的最前前前前前面
+        NSRange range = NSMakeRange(0, newStatuses.count);
+        NSIndexSet *set = [NSIndexSet indexSetWithIndexesInRange:range];
+        [self.statuses insertObjects:newStatuses atIndexes:set];
         
         //刷新表格
         [self.tableView reloadData];
         
+        //结束刷新
+        [control endRefreshing];
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         SWBLog(@"failure-%@", error);
+        //结束刷新
+        [control endRefreshing];
     }];
+    
 }
+
+//-(void)loadNewStatus {
+//    
+//    //1.请求管理者
+//    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
+//    
+//    //2.拼接请求参数
+//    Account *account = [AccountTool account];
+//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+//    params[@"access_token"] = account.access_token;
+//    
+//    //3.发送请求
+//    [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+//        
+//    } success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *responseObject) {
+//        
+//        //将"微博字典"数组转为"微博模型"数组
+//        NSArray *newStatuses = [SWStatus mj_objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+//        
+//        //将最新的微博数据添加到总数组的最后面
+//        [self.statuses addObjectsFromArray:newStatuses];
+//        
+//        //刷新表格
+//        [self.tableView reloadData];
+//        
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        SWBLog(@"failure-%@", error);
+//    }];
+//}
 
 -(void)setupUserInfo {
     
@@ -92,7 +153,7 @@
     [mgr GET:@"https://api.weibo.com/2/users/show.json" parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
         //        SWBLog(@"%@", uploadProgress);
     } success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *responseObject) {
- 
+        
         //标题按钮
         TitleButton *titleBtn = (TitleButton *)self.navigationItem.titleView;
         
