@@ -28,6 +28,8 @@
 		0F5B1F1B1D41227A005A66B7 /* Test1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F4D52111D3FC1D60034F9F2 /* Test1ViewController.m */; };
 		0F66E0931D4D0F5300EC0355 /* DropdownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F66E0921D4D0F5300EC0355 /* DropdownMenu.m */; };
 		0F66E0961D4D236000EC0355 /* TitleMenuTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F66E0951D4D236000EC0355 /* TitleMenuTVC.m */; };
+		0F84806C1D815AA900C876C2 /* LoadMoreFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F84806B1D815AA900C876C2 /* LoadMoreFooter.m */; };
+		0F84806E1D815AF000C876C2 /* LoadMoreFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F84806D1D815AF000C876C2 /* LoadMoreFooter.xib */; };
 		0FB1370C1D4B0A0600B0312B /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB1370B1D4B0A0600B0312B /* UIBarButtonItem+Extension.m */; };
 		0FB137151D4C9B8800B0312B /* SearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB137141D4C9B8800B0312B /* SearchBar.m */; };
 		0FBC33691D5C0CC5005A9E96 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBC33681D5C0CC5005A9E96 /* Account.m */; };
@@ -94,6 +96,9 @@
 		0F66E0921D4D0F5300EC0355 /* DropdownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropdownMenu.m; sourceTree = "<group>"; };
 		0F66E0941D4D236000EC0355 /* TitleMenuTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleMenuTVC.h; sourceTree = "<group>"; };
 		0F66E0951D4D236000EC0355 /* TitleMenuTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleMenuTVC.m; sourceTree = "<group>"; };
+		0F84806A1D815AA900C876C2 /* LoadMoreFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadMoreFooter.h; sourceTree = "<group>"; };
+		0F84806B1D815AA900C876C2 /* LoadMoreFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadMoreFooter.m; sourceTree = "<group>"; };
+		0F84806D1D815AF000C876C2 /* LoadMoreFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadMoreFooter.xib; sourceTree = "<group>"; };
 		0FB1370A1D4B0A0600B0312B /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
 		0FB1370B1D4B0A0600B0312B /* UIBarButtonItem+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extension.m"; sourceTree = "<group>"; };
 		0FB137131D4C9B8800B0312B /* SearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBar.h; sourceTree = "<group>"; };
@@ -271,6 +276,9 @@
 				0F66E0951D4D236000EC0355 /* TitleMenuTVC.m */,
 				0F21A53C1D745B0E006F5EB3 /* TitleButton.h */,
 				0F21A53D1D745B0E006F5EB3 /* TitleButton.m */,
+				0F84806A1D815AA900C876C2 /* LoadMoreFooter.h */,
+				0F84806B1D815AA900C876C2 /* LoadMoreFooter.m */,
+				0F84806D1D815AF000C876C2 /* LoadMoreFooter.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -597,6 +605,7 @@
 				0F4D51EF1D3F242B0034F9F2 /* LaunchScreen.storyboard in Resources */,
 				0F5B1F171D411C96005A66B7 /* Test3TVController.xib in Resources */,
 				0F2F7F8F1D3EFB6800E0FE5B /* Assets.xcassets in Resources */,
+				0F84806E1D815AF000C876C2 /* LoadMoreFooter.xib in Resources */,
 				0FFC71A11D579EB100F0DF8E /* Podfile in Resources */,
 				0FFCE9A51D7F1BFF00135D6B /* Info.plist in Resources */,
 			);
@@ -659,6 +668,7 @@
 			files = (
 				0FFC71681D502C5E00F0DF8E /* SWBTabBar.m in Sources */,
 				0F4D52061D3F744A0034F9F2 /* DiscoverTableViewController.m in Sources */,
+				0F84806C1D815AA900C876C2 /* LoadMoreFooter.m in Sources */,
 				0FFCE9AE1D7F1BFF00135D6B /* NSObject+MJProperty.m in Sources */,
 				0FFCE9AA1D7F1BFF00135D6B /* MJPropertyType.m in Sources */,
 				0F5B1F1B1D41227A005A66B7 /* Test1ViewController.m in Sources */,

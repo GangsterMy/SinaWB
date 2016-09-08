@@ -18,6 +18,7 @@
 #import "SWUser.h"
 #import "SWStatus.h"
 #import "MJExtension/MJExtension.h"
+#import "LoadMoreFooter.h"
 
 @interface HomeTableViewController () <DropdownMenuDelegate>
 //一个字典代表一条微博 -> 数组里面放的是status模型
@@ -45,15 +46,25 @@
     [self setupUserInfo];
     
     //集成刷新控件
-    [self setupRefresh];
+    [self setupDownRefresh];
+    
+    //集成上拉刷新
+    [self setupUpRefresh];
     
     //    SWBLog(@"%@", NSHomeDirectory());
 }
 
 /**
- *  集成刷新控件
+ *  集成上拉刷新控件
  */
--(void)setupRefresh {
+-(void)setupUpRefresh {
+    self.tableView.tableFooterView = [LoadMoreFooter footer];
+}
+
+/**
+ *  集成下拉刷新控件
+ */
+-(void)setupDownRefresh {
     
     //添加刷新控件
     UIRefreshControl *control = [[UIRefreshControl alloc] init];
