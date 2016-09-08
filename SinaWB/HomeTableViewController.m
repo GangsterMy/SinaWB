@@ -51,14 +51,62 @@
     //集成上拉刷新
     [self setupUpRefresh];
     
+    //获得未读数
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(setupUnreadCount) userInfo:nil repeats:YES];
+    //主线程也会抽时间处理一下timer (不管主线程是否正在处理其他事件)
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+    
     //    SWBLog(@"%@", NSHomeDirectory());
+}
+
+/**
+ *  获得未读数
+ */
+-(void)setupUnreadCount {
+    
+    //1.请求管理者
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
+    
+    //2.拼接请求参数
+    Account *account = [AccountTool account];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"access_token"] = account.access_token;
+    params[@"uid"] = account.uid;
+    
+    //3.发送请求
+    [mgr GET:@"https://rm.api.weibo.com/2/remind/unread_count.json" parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *responseObject) {
+        //微博的未读数
+        //       int status = [responseObject[@"status"] intValue];
+        //设置提醒数字
+        //        self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d", status];
+        
+        NSString *status = [responseObject[@"status"] description];
+        if ([status isEqualToString:@"0"]) {
+            //如果是零 清空现有数字
+            self.tabBarItem.badgeValue = nil;
+            [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+        } else {
+            self.tabBarItem.badgeValue = status;
+//            UIUserNotificationSettings *settings = [UIUserNotificationSettings
+//                                                    settingsForTypes:UIUserNotificationTypeBadge categories:nil];
+//            
+//            [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+            [UIApplication sharedApplication].applicationIconBadgeNumber = status.intValue;
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        SWBLog(@"failure-%@", error);
+    }];
 }
 
 /**
  *  集成上拉刷新控件
  */
 -(void)setupUpRefresh {
-    self.tableView.tableFooterView = [LoadMoreFooter footer];
+    LoadMoreFooter *footer = [LoadMoreFooter footer];
+    footer.hidden = YES;
+    self.tableView.tableFooterView = footer;
 }
 
 /**
@@ -69,19 +117,19 @@
     //添加刷新控件
     UIRefreshControl *control = [[UIRefreshControl alloc] init];
     //手动下拉触发
-    [control addTarget:self action:@selector(refreshStateChange:) forControlEvents:UIControlEventValueChanged];
+    [control addTarget:self action:@selector(loadNewStatus:) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:control];
     
     //2.立即进入刷新状态 (进显示刷新菊花 不会触发UIControlEventValuewChanged事件)
     [control beginRefreshing];
     
     //3.立即加载数据
-    [self refreshStateChange:control];
+    [self loadNewStatus:control];
 }
 /**
  *  UIRefreshControl进入刷新状态:加载最新数据
  */
--(void)refreshStateChange:(UIRefreshControl *)control {
+-(void)loadNewStatus:(UIRefreshControl *)control {
     
     //1.请求管理者
     AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
@@ -96,7 +144,6 @@
     if (firstStatus) {
         //若指定此参数，则返回ID比since_id大的微博（即比since_id时间晚的微博），默认为0。
         params[@"since_id"] = firstStatus.idstr;
-
     }
     
     //3.发送请求
@@ -129,12 +176,54 @@
     
 }
 
+-(void)loadMoreStatus {
+    //1.请求管理者
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
+    
+    //2.拼接请求参数
+    Account *account = [AccountTool account];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"access_token"] = account.access_token;
+    
+    SWStatus *lastStatus = [self.statuses lastObject];
+    if (lastStatus) {
+        long long maxId = lastStatus.idstr.longLongValue - 1;
+        params[@"max_id"] = @(maxId);
+    }
+    
+    //3.发送请求
+    [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *responseObject) {
+        
+        //将"微博字典"数组转为"微博模型"数组
+        NSArray *newStatuses = [SWStatus mj_objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+        
+        //将之前的微博数据添加到总数组的最后面
+        [self.statuses addObjectsFromArray:newStatuses];
+        
+        //刷新表格
+        [self.tableView reloadData];
+        
+        self.tableView.tableFooterView.hidden = YES;
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        SWBLog(@"failure-%@", error);
+        
+        self.tableView.tableFooterView.hidden = YES;
+    }];
+
+}
+
 /**
  *  显示最新微博数量
  *
  *  @param count 最新微博的数量
  */
 -(void)showNewStatusCount:(int)count {
+    //刷新成功 清空未读数字
+    self.tabBarItem.badgeValue = nil;
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     
     //1.create label
     UILabel *label = [[UILabel alloc] init];
@@ -159,12 +248,12 @@
     //4.动画
     CGFloat duration = 1.0; //动画过程/路径时长
     [UIView animateWithDuration:duration animations:^{
-//        label.y += label.height;
+        //        label.y += label.height;
         label.transform = CGAffineTransformMakeTranslation(0, label.height);
     } completion:^(BOOL finished) {
         CGFloat delay = 1.0; //动画延迟 停留显现时长
         [UIView animateWithDuration:duration delay:delay options:UIViewAnimationOptionCurveLinear animations:^{
-//            label.y -= label.height;
+            //            label.y -= label.height;
             label.transform = CGAffineTransformIdentity;
         } completion:^(BOOL finished) {
             [label removeFromSuperview];
