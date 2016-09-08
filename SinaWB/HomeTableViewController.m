@@ -44,9 +44,6 @@
     //get user info (昵称)
     [self setupUserInfo];
     
-    //load latest data
-//    [self loadNewStatus];
-    
     //集成刷新控件
     [self setupRefresh];
     
@@ -57,9 +54,18 @@
  *  集成刷新控件
  */
 -(void)setupRefresh {
+    
+    //添加刷新控件
     UIRefreshControl *control = [[UIRefreshControl alloc] init];
+    //手动下拉触发
     [control addTarget:self action:@selector(refreshStateChange:) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:control];
+    
+    //2.立即进入刷新状态 (进显示刷新菊花 不会触发UIControlEventValuewChanged事件)
+    [control beginRefreshing];
+    
+    //3.立即加载数据
+    [self refreshStateChange:control];
 }
 /**
  *  UIRefreshControl进入刷新状态:加载最新数据
@@ -101,6 +107,9 @@
         //结束刷新
         [control endRefreshing];
         
+        //显示最新微博数量
+        [self showNewStatusCount:newStatuses.count];
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         SWBLog(@"failure-%@", error);
         //结束刷新
@@ -109,34 +118,51 @@
     
 }
 
-//-(void)loadNewStatus {
-//    
-//    //1.请求管理者
-//    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
-//    
-//    //2.拼接请求参数
-//    Account *account = [AccountTool account];
-//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-//    params[@"access_token"] = account.access_token;
-//    
-//    //3.发送请求
-//    [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
-//        
-//    } success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *responseObject) {
-//        
-//        //将"微博字典"数组转为"微博模型"数组
-//        NSArray *newStatuses = [SWStatus mj_objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
-//        
-//        //将最新的微博数据添加到总数组的最后面
-//        [self.statuses addObjectsFromArray:newStatuses];
-//        
-//        //刷新表格
-//        [self.tableView reloadData];
-//        
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//        SWBLog(@"failure-%@", error);
-//    }];
-//}
+/**
+ *  显示最新微博数量
+ *
+ *  @param count 最新微博的数量
+ */
+-(void)showNewStatusCount:(int)count {
+    
+    //1.create label
+    UILabel *label = [[UILabel alloc] init];
+    label.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"timeline_new_status_background"]];
+    label.width = [UIScreen mainScreen].bounds.size.width;
+    label.height = 35;
+    
+    //2.set other attributes
+    if (count == 0) {
+        label.text = @"没有新的微博, 请稍后再试";
+    } else {
+        label.text = [NSString stringWithFormat:@"共有%d条新的微博", count];
+    }
+    label.textColor = [UIColor whiteColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont systemFontOfSize:16];
+    
+    //3.添加
+    label.y = 64 - label.height;
+    //将label添加到导航控制器的View中 并隐藏在导航栏的下层
+    [self.navigationController.view insertSubview:label belowSubview:self.navigationController.navigationBar];
+    //4.动画
+    CGFloat duration = 1.0; //动画过程/路径时长
+    [UIView animateWithDuration:duration animations:^{
+//        label.y += label.height;
+        label.transform = CGAffineTransformMakeTranslation(0, label.height);
+    } completion:^(BOOL finished) {
+        CGFloat delay = 1.0; //动画延迟 停留显现时长
+        [UIView animateWithDuration:duration delay:delay options:UIViewAnimationOptionCurveLinear animations:^{
+//            label.y -= label.height;
+            label.transform = CGAffineTransformIdentity;
+        } completion:^(BOOL finished) {
+            [label removeFromSuperview];
+        }];
+    }];
+    
+    //如果动画执行完回到执行前状态 建议使用transform做动画
+    
+}
 
 -(void)setupUserInfo {
     
