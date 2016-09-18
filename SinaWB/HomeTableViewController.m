@@ -19,26 +19,28 @@
 #import "SWStatus.h"
 #import "MJExtension/MJExtension.h"
 #import "LoadMoreFooter.h"
+#import "StatusCell.h"
+#import "StatusFrame.h"
 
 @interface HomeTableViewController () <DropdownMenuDelegate>
-//一个字典代表一条微博 -> 数组里面放的是status模型
-@property (nonatomic, strong) NSMutableArray *statuses;
+//一个字典代表一条微博 -> 数组里面放的是statusFrame模型
+@property (nonatomic, strong) NSMutableArray *statusFrames;
 
 @end
 
 @implementation HomeTableViewController
 
-- (NSMutableArray *)statuses {
-    if (!_statuses) {
-        self.statuses = [[NSMutableArray alloc] init];
+- (NSMutableArray *)statusFrames {
+    if (!_statusFrames) {
+        self.statusFrames = [[NSMutableArray alloc] init];
     }
-    return _statuses;
+    return _statusFrames;
 }
+
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
     //set nav content
     [self setupNav];
     
@@ -51,10 +53,10 @@
     //集成上拉刷新
     [self setupUpRefresh];
     
-    //获得未读数
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(setupUnreadCount) userInfo:nil repeats:YES];
-    //主线程也会抽时间处理一下timer (不管主线程是否正在处理其他事件)
-    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+    //    //获得未读数
+    //    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(setupUnreadCount) userInfo:nil repeats:YES];
+    //    //主线程也会抽时间处理一下timer (不管主线程是否正在处理其他事件)
+    //    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     
     //    SWBLog(@"%@", NSHomeDirectory());
 }
@@ -89,10 +91,10 @@
             [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
         } else {
             self.tabBarItem.badgeValue = status;
-//            UIUserNotificationSettings *settings = [UIUserNotificationSettings
-//                                                    settingsForTypes:UIUserNotificationTypeBadge categories:nil];
-//            
-//            [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+            //            UIUserNotificationSettings *settings = [UIUserNotificationSettings
+            //                                                    settingsForTypes:UIUserNotificationTypeBadge
+            //                                                    categories:nil];
+            //            [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
             [UIApplication sharedApplication].applicationIconBadgeNumber = status.intValue;
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -126,6 +128,22 @@
     //3.立即加载数据
     [self loadNewStatus:control];
 }
+
+/**
+ *  将SWStatus模型转为StatusFrame模型
+*/
+-(NSArray *)statusFramesWithStatuses:(NSArray *)statuses {
+   
+    NSMutableArray *frames = [NSMutableArray array];
+    for (SWStatus *status in statuses) {
+        StatusFrame *f = [[StatusFrame alloc] init];
+        f.status = status;
+        [frames addObject:f];
+    }
+    
+    return frames;
+}
+
 /**
  *  UIRefreshControl进入刷新状态:加载最新数据
  */
@@ -140,10 +158,10 @@
     params[@"access_token"] = account.access_token;
     
     //取出最前面的微博(最新微博 since_id最大的微博)
-    SWStatus *firstStatus = [self.statuses firstObject];
-    if (firstStatus) {
+    StatusFrame *firstStatusFrame = [self.statusFrames firstObject];
+    if (firstStatusFrame) {
         //若指定此参数，则返回ID比since_id大的微博（即比since_id时间晚的微博），默认为0。
-        params[@"since_id"] = firstStatus.idstr;
+        params[@"since_id"] = firstStatusFrame.status.idstr;
     }
     
     //3.发送请求
@@ -154,10 +172,13 @@
         //将"微博字典"数组转为"微博模型"数组
         NSArray *newStatuses = [SWStatus mj_objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
         
+        //将Status数组转为StatusFrame数组
+        NSArray *newFrames = [self statusFramesWithStatuses:newStatuses];
+        
         //将最新的微博数据添加到总数组的最前前前前前面
-        NSRange range = NSMakeRange(0, newStatuses.count);
+        NSRange range = NSMakeRange(0, newFrames.count);
         NSIndexSet *set = [NSIndexSet indexSetWithIndexesInRange:range];
-        [self.statuses insertObjects:newStatuses atIndexes:set];
+        [self.statusFrames insertObjects:newFrames atIndexes:set];
         
         //刷新表格
         [self.tableView reloadData];
@@ -185,9 +206,9 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"access_token"] = account.access_token;
     
-    SWStatus *lastStatus = [self.statuses lastObject];
-    if (lastStatus) {
-        long long maxId = lastStatus.idstr.longLongValue - 1;
+    StatusFrame *lastStatusFrame = [self.statusFrames lastObject];
+    if (lastStatusFrame) {
+        long long maxId = lastStatusFrame.status.idstr.longLongValue - 1;
         params[@"max_id"] = @(maxId);
     }
     
@@ -199,8 +220,11 @@
         //将"微博字典"数组转为"微博模型"数组
         NSArray *newStatuses = [SWStatus mj_objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
         
+        //将Status数组转为StatusFrame数组
+        NSArray *newFrames = [self statusFramesWithStatuses:newStatuses];
+        
         //将之前的微博数据添加到总数组的最后面
-        [self.statuses addObjectsFromArray:newStatuses];
+        [self.statusFrames addObjectsFromArray:newFrames];
         
         //刷新表格
         [self.tableView reloadData];
@@ -212,7 +236,7 @@
         
         self.tableView.tableFooterView.hidden = YES;
     }];
-
+    
 }
 
 /**
@@ -263,6 +287,7 @@
     //如果动画执行完回到执行前状态 建议使用transform做动画
     
 }
+
 
 -(void)setupUserInfo {
     
@@ -368,39 +393,38 @@
 #pragma mark - Table view data source
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.statuses.count;
+    return self.statusFrames.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *ID = @"status";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
-    }
+    StatusCell *cell = [StatusCell cellWithTableView:tableView];
     
-    //取出这行对应的微博字典 ->微博字典模型
-    //    NSDictionary *status = self.statuses[indexPath.row];
-    SWStatus  *status = self.statuses[indexPath.row];
-    
-    //取出这条微博的作者(用户)
-    //    NSDictionary *user = status[@"user"];
-    //    cell.textLabel.text = user[@"name"];
-    SWUser *user = status.user;
-    cell.textLabel.text = user.name;
-    
-    //设置微博的文字
-    //    cell.detailTextLabel.text = status[@"text"];
-    cell.detailTextLabel.text = status.text;
-    
-    //设置头像
-    //    NSString *imageUrl = user[@"profile_image_url"];
-    NSString *imageUrl = user.profile_image_url;
-    UIImage *placehoder = [UIImage imageNamed:@"avatar_default_small"];
-    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:placehoder];
-    //    SWBLog(@"%@",user);
+    // 给cell传递模型数据
+    cell.statusFrame = self.statusFrames[indexPath.row];
     
     return cell;
 }
 
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+    //如果tableView还没有数据就直接返回
+    if (self.statusFrames.count == 0 || self.tableView.tableFooterView.isHidden == NO) return;
+    
+    CGFloat offsetY = scrollView.contentOffset.y;
+    //当最后一个cell完全显示在眼前时 contentOffset的y值
+    CGFloat judgeOffsetY = scrollView.contentSize.height + scrollView.contentInset.bottom - scrollView.height - self.tableView.tableFooterView.height;
+    if (offsetY >= judgeOffsetY) { //最后一个cell完全就进入视野范围内
+        //显示footer
+        self.tableView.tableFooterView.hidden = NO;
+        
+        //加载更多的微博数据
+        [self loadMoreStatus];
+    }
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    StatusFrame *frame = self.statusFrames[indexPath.row];
+    return frame.cellHeight;
+}
 
 @end

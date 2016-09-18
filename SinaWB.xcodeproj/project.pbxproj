@@ -32,6 +32,8 @@
 		0F84806E1D815AF000C876C2 /* LoadMoreFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F84806D1D815AF000C876C2 /* LoadMoreFooter.xib */; };
 		0FB1370C1D4B0A0600B0312B /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB1370B1D4B0A0600B0312B /* UIBarButtonItem+Extension.m */; };
 		0FB137151D4C9B8800B0312B /* SearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB137141D4C9B8800B0312B /* SearchBar.m */; };
+		0FB429CE1D8D6243004B7276 /* StatusFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB429CD1D8D6243004B7276 /* StatusFrame.m */; };
+		0FBA4CF51D8AB28700A2D74F /* StatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBA4CF41D8AB28700A2D74F /* StatusCell.m */; };
 		0FBC33691D5C0CC5005A9E96 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBC33681D5C0CC5005A9E96 /* Account.m */; };
 		0FBC33821D5F5CB5005A9E96 /* AccountTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBC33811D5F5CB5005A9E96 /* AccountTool.m */; };
 		0FBC33851D62192D005A9E96 /* UIWindow+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBC33841D62192D005A9E96 /* UIWindow+Extension.m */; };
@@ -103,6 +105,10 @@
 		0FB1370B1D4B0A0600B0312B /* UIBarButtonItem+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extension.m"; sourceTree = "<group>"; };
 		0FB137131D4C9B8800B0312B /* SearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBar.h; sourceTree = "<group>"; };
 		0FB137141D4C9B8800B0312B /* SearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchBar.m; sourceTree = "<group>"; };
+		0FB429CC1D8D6243004B7276 /* StatusFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusFrame.h; sourceTree = "<group>"; };
+		0FB429CD1D8D6243004B7276 /* StatusFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusFrame.m; sourceTree = "<group>"; };
+		0FBA4CF31D8AB28700A2D74F /* StatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusCell.h; sourceTree = "<group>"; };
+		0FBA4CF41D8AB28700A2D74F /* StatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusCell.m; sourceTree = "<group>"; };
 		0FBC33671D5C0CC5005A9E96 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
 		0FBC33681D5C0CC5005A9E96 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
 		0FBC33801D5F5CB5005A9E96 /* AccountTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountTool.h; sourceTree = "<group>"; };
@@ -279,6 +285,8 @@
 				0F84806A1D815AA900C876C2 /* LoadMoreFooter.h */,
 				0F84806B1D815AA900C876C2 /* LoadMoreFooter.m */,
 				0F84806D1D815AF000C876C2 /* LoadMoreFooter.xib */,
+				0FBA4CF31D8AB28700A2D74F /* StatusCell.h */,
+				0FBA4CF41D8AB28700A2D74F /* StatusCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -299,6 +307,8 @@
 				0FFCE9891D7EEF9C00135D6B /* SWUser.m */,
 				0FFCE98B1D7EEFB300135D6B /* SWStatus.h */,
 				0FFCE98C1D7EEFB300135D6B /* SWStatus.m */,
+				0FB429CC1D8D6243004B7276 /* StatusFrame.h */,
+				0FB429CD1D8D6243004B7276 /* StatusFrame.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -683,6 +693,7 @@
 				0F4D52441D408E500034F9F2 /* UIView+Extension.m in Sources */,
 				0FFCE9A81D7F1BFF00135D6B /* MJProperty.m in Sources */,
 				0FFCE9A61D7F1BFF00135D6B /* MJExtensionConst.m in Sources */,
+				0FBA4CF51D8AB28700A2D74F /* StatusCell.m in Sources */,
 				0F4D51F81D3F24740034F9F2 /* AppDelegate.m in Sources */,
 				0FFC71791D52E16E00F0DF8E /* NewfeatureViewController.m in Sources */,
 				0F4D52091D3F745E0034F9F2 /* ProfileTableViewController.m in Sources */,
@@ -690,6 +701,7 @@
 				0F4D52031D3F74210034F9F2 /* MessageCenterTableViewController.m in Sources */,
 				0FFCE9A71D7F1BFF00135D6B /* MJFoundation.m in Sources */,
 				0FB1370C1D4B0A0600B0312B /* UIBarButtonItem+Extension.m in Sources */,
+				0FB429CE1D8D6243004B7276 /* StatusFrame.m in Sources */,
 				0F4D52181D3FC7050034F9F2 /* Test2ViewController.m in Sources */,
 				0F5B1F161D411C96005A66B7 /* Test3TVController.m in Sources */,
 				0FBC33851D62192D005A9E96 /* UIWindow+Extension.m in Sources */,

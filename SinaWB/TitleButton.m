@@ -8,6 +8,8 @@
 
 #import "TitleButton.h"
 
+#define SWMargin 10
+
 @implementation TitleButton
 
 -(instancetype)initWithFrame:(CGRect)frame {
@@ -26,6 +28,12 @@
     return self;
 }
 
+//目的:在系统计算设置完按钮的尺寸后 再修改一下尺寸
+-(void)setFrame:(CGRect)frame {
+//    frame.size.width += SWMargin;
+    [super setFrame:frame];
+}
+
 -(void)layoutSubviews {
     [super layoutSubviews]; //在默认基础上调整x即可
     // if only switch position
@@ -34,7 +42,7 @@
     self.titleLabel.x = self.imageView.x;
     
     //2.计算imageView的frame
-    self.imageView.x = CGRectGetMaxX(self.titleLabel.frame);
+    self.imageView.x = CGRectGetMaxX(self.titleLabel.frame) + SWMargin;
 }
 
 -(void)setTitle:(NSString *)title forState:(UIControlState)state {
