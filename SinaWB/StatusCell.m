@@ -11,6 +11,7 @@
 #import "SWStatus.h"
 #import "SWUser.h"
 #import <UIImageView+WebCache.h>
+#import "SWPhoto.h"
 
 @interface StatusCell ()
 //原创微博整体
@@ -54,6 +55,7 @@
         
         //原创微博整体
         UIView *originalView = [[UIView alloc] init];
+        originalView.backgroundColor = [UIColor yellowColor];
         [self.contentView addSubview:originalView];
         self.originalView = originalView;
         
@@ -132,8 +134,14 @@
     }
     
     //配图
-    self.photoView.frame = statusFrame.photoViewF;
-    self.photoView.backgroundColor = [UIColor redColor];
+    if (status.pic_urls.count) {
+        self.photoView.frame = statusFrame.photoViewF;
+        SWPhoto *photo = [status.pic_urls firstObject];
+        [self.photoView sd_setImageWithURL:[NSURL URLWithString:nil] placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"]];
+        self.photoView.hidden = NO;
+    } else {
+        self.photoView.hidden = YES;
+    }
     
     //昵称
     self.nameLabel.text = user.name;

@@ -30,6 +30,7 @@
 		0F66E0961D4D236000EC0355 /* TitleMenuTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F66E0951D4D236000EC0355 /* TitleMenuTVC.m */; };
 		0F84806C1D815AA900C876C2 /* LoadMoreFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F84806B1D815AA900C876C2 /* LoadMoreFooter.m */; };
 		0F84806E1D815AF000C876C2 /* LoadMoreFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F84806D1D815AF000C876C2 /* LoadMoreFooter.xib */; };
+		0FA6078C1D8F5A86007809D7 /* SWPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA6078B1D8F5A86007809D7 /* SWPhoto.m */; };
 		0FB1370C1D4B0A0600B0312B /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB1370B1D4B0A0600B0312B /* UIBarButtonItem+Extension.m */; };
 		0FB137151D4C9B8800B0312B /* SearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB137141D4C9B8800B0312B /* SearchBar.m */; };
 		0FB429CE1D8D6243004B7276 /* StatusFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB429CD1D8D6243004B7276 /* StatusFrame.m */; };
@@ -101,6 +102,8 @@
 		0F84806A1D815AA900C876C2 /* LoadMoreFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadMoreFooter.h; sourceTree = "<group>"; };
 		0F84806B1D815AA900C876C2 /* LoadMoreFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadMoreFooter.m; sourceTree = "<group>"; };
 		0F84806D1D815AF000C876C2 /* LoadMoreFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadMoreFooter.xib; sourceTree = "<group>"; };
+		0FA6078A1D8F5A86007809D7 /* SWPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWPhoto.h; sourceTree = "<group>"; };
+		0FA6078B1D8F5A86007809D7 /* SWPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWPhoto.m; sourceTree = "<group>"; };
 		0FB1370A1D4B0A0600B0312B /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
 		0FB1370B1D4B0A0600B0312B /* UIBarButtonItem+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extension.m"; sourceTree = "<group>"; };
 		0FB137131D4C9B8800B0312B /* SearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBar.h; sourceTree = "<group>"; };
@@ -309,6 +312,8 @@
 				0FFCE98C1D7EEFB300135D6B /* SWStatus.m */,
 				0FB429CC1D8D6243004B7276 /* StatusFrame.h */,
 				0FB429CD1D8D6243004B7276 /* StatusFrame.m */,
+				0FA6078A1D8F5A86007809D7 /* SWPhoto.h */,
+				0FA6078B1D8F5A86007809D7 /* SWPhoto.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -708,6 +713,7 @@
 				0FFCE9AD1D7F1BFF00135D6B /* NSObject+MJKeyValue.m in Sources */,
 				0F66E0931D4D0F5300EC0355 /* DropdownMenu.m in Sources */,
 				0FFCE98D1D7EEFB300135D6B /* SWStatus.m in Sources */,
+				0FA6078C1D8F5A86007809D7 /* SWPhoto.m in Sources */,
 				0F4D51F01D3F242B0034F9F2 /* main.m in Sources */,
 				0F4D520F1D3FACD10034F9F2 /* MainTabBarController.m in Sources */,
 				0FBC33691D5C0CC5005A9E96 /* Account.m in Sources */,

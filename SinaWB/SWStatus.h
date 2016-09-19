@@ -21,5 +21,7 @@
 @property (nonatomic, copy) NSString *created_at;
 //source	string	微博来源
 @property (nonatomic, copy) NSString *source;
+//pic_ids	object	微博配图ID。多图时返回多图ID，用来拼接图片url。用返回字段thumbnail_pic的地址配上该返回字段的图片ID，即可得到多个图片url。
+@property (nonatomic, strong) NSArray *pic_urls;
 
 @end
