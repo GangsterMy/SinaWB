@@ -41,6 +41,9 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    self.tableView.backgroundColor = WBColor(211, 211, 211);
+    
     //set nav content
     [self setupNav];
     
@@ -58,7 +61,7 @@
     //    //主线程也会抽时间处理一下timer (不管主线程是否正在处理其他事件)
     //    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     
-    //    SWBLog(@"%@", NSHomeDirectory());
+//        SWBLog(@"%@", NSHomeDirectory());
 }
 
 /**

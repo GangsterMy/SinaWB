@@ -40,6 +40,9 @@
 /** 转发配图 */
 @property (nonatomic, weak) UIImageView *retweetPhotoView;
 
+/** 工具条 */
+@property (nonatomic, weak) UIView *toolbar;
+
 
 @end
 
@@ -62,13 +65,29 @@
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        
+        self.backgroundColor = [UIColor clearColor];
+        
         // 初始化原创微博
         [self setupOriginal];
         
         // 初始化转发微博
         [self setupRetweet];
+        
+        // 初始化工具条
+        [self setupToolbar];
     }
     return self;
+}
+
+/**
+ *  初始化工具条
+ */
+-(void)setupToolbar {
+    UIView *toolbar = [[UIView alloc] init];
+    toolbar.backgroundColor = [UIColor yellowColor];
+    [self.contentView addSubview:toolbar];
+    self.toolbar = toolbar;
 }
 
 /**
@@ -103,7 +122,7 @@
     
     //原创微博整体
     UIView *originalView = [[UIView alloc] init];
-    //    originalView.backgroundColor = [UIColor yellowColor];
+    originalView.backgroundColor = [UIColor whiteColor];
     [self.contentView addSubview:originalView];
     self.originalView = originalView;
     
@@ -233,6 +252,9 @@
     } else {
         self.retweetView.hidden = YES;
     }
+    
+    /** 工具条 */
+    self.toolbar.frame = statusFrame.toolbarF;
     
 }
 
